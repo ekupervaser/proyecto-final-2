@@ -1,5 +1,5 @@
 <script>
-import { logout, subscribeToAuth } from './services/Auth'
+import { logout, subscribeToAuth } from './services/auth'
 import Home from './pages/Home.vue';
 import Footer from './components/Footer.vue';
 import { getUserProfileById } from './services/user';
