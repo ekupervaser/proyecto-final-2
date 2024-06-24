@@ -96,4 +96,4 @@ async function purchaseCourse(userId, courseId) {
       <Loader></Loader>
     </div>
   </div>
-</template>../services/shine-services
+</template>

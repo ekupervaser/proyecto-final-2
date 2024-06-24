@@ -5,7 +5,7 @@ import { useAuth } from '../composition/useAuth'
 import Loader from '../components/Loader.vue';
 
 export default {
-  name: 'UserCourses',
+  name: 'UserPlans',
   components: { Loader },
   data() {
     return {
@@ -50,7 +50,7 @@ export default {
 
 <template>
   <div>
-    <h1 class="font-bold text-center text-3xl">Cursos comprados por {{ user.email }}</h1>
+    <h1 class="font-bold text-center text-3xl">Planes comprados por {{ user.email }}</h1>
     <template v-if="userLoading">
       <Loader></Loader>
     </template>
@@ -61,9 +61,8 @@ export default {
         </li>
       </ul>
       <div v-if="courseData.length === 0 && !userLoading" class="text-center mt-4">
-        {{ user.email }} no tiene ningún curso comprado.
+        {{ user.email }} no tiene ningún plan comprado.
       </div>
     </template>
   </div>
 </template>
-../services/shine-services

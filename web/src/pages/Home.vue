@@ -31,28 +31,28 @@ export default {
           <div className="flex flex-wrap justify-center">
             <div className="w-full sm:w-1/2 lg:w-1/4 p-4">
               <div className="bg-white p-6 rounded-lg shadow-lg">
-                <div className="text-4xl text-blue-600 mb-4"><font-awesome-icon :icon="['fas', 'truck']" /></div>
+                <div className="text-4xl text-[#94D1BF] mb-4"><font-awesome-icon :icon="['fas', 'truck']" /></div>
                 <h3 className="text-xl font-bold mb-4">Servicio a Domicilio</h3>
                 <p>Recogemos y entregamos tu ropa en la comodidad de tu hogar.</p>
               </div>
             </div>
             <div className="w-full sm:w-1/2 lg:w-1/4 p-4">
               <div className="bg-white p-6 rounded-lg shadow-lg">
-                <div className="text-4xl text-blue-600 mb-4"><font-awesome-icon :icon="['fas', 'tshirt']" /></div>
+                <div className="text-4xl text-[#94D1BF] mb-4"><font-awesome-icon :icon="['fas', 'tshirt']" /></div>
                 <h3 className="text-xl font-bold mb-4">Tratamiento Especializado</h3>
                 <p>Cuidado especial para prendas delicadas y artículos de limpieza complejos.</p>
               </div>
             </div>
             <div className="w-full sm:w-1/2 lg:w-1/4 p-4">
               <div className="bg-white p-6 rounded-lg shadow-lg">
-                <div className="text-4xl text-blue-600 mb-4"><font-awesome-icon :icon="['fas', 'leaf']" /></div>
+                <div className="text-4xl text-[#94D1BF] mb-4"><font-awesome-icon :icon="['fas', 'leaf']" /></div>
                 <h3 className="text-xl font-bold mb-4">Sostenibilidad</h3>
                 <p>Utilizamos productos ecológicos que cuidan tu ropa y el medio ambiente.</p>
               </div>
             </div>
             <div className="w-full sm:w-1/2 lg:w-1/4 p-4">
               <div className="bg-white p-6 rounded-lg shadow-lg">
-                <div className="text-4xl text-blue-600 mb-4"><font-awesome-icon :icon="['fas', 'tags']" /></div>
+                <div className="text-4xl text-[#94D1BF] mb-4"><font-awesome-icon :icon="['fas', 'tags']" /></div>
                 <h3 className="text-xl font-bold mb-4">Promociones y Descuentos</h3>
                 <p>Tenemos promociones y descuentos para vos.</p>
               </div>
@@ -92,8 +92,7 @@ export default {
         <div className="container mx-auto text-center px-4">
           <h2 className="text-3xl font-bold mb-4">¡Probá la Diferencia Hoy Mismo!</h2>
           <p className="text-lg mb-6">Elegir <b>SHINE</b> significa optar por un servicio de lavandería que entiende y satisface tus necesidades. Nos dedicamos a hacer tu vida más fácil y a cuidar de tu ropa con el mismo esmero con el que tú lo harías.</p>
-          <a href="#" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition"> <FontAwesomeIcon :icon="faPhoneAlt" className="mr-2"/>Contactanos</a>
+          <router-link to="/planes" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Suscribite a Shine</router-link>
         </div>
       </section>
-
 </template>

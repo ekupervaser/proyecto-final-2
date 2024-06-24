@@ -5,51 +5,50 @@ import { getUsers } from '../services/user'
 export default {
     name: 'UsersList',
     components: { Loader },
-    data () {
+    data() {
         return {
             usersLoading: true,
             userList: [],
         }
     },
     async mounted() {
-    this.usersLoading = true;
-    await this.fetchUsers();
-    this.usersLoading = false;
-},
-methods: {
-    async fetchUsers() {
-    try {
-        const userList = await getUsers();
-        this.userList = userList;
-    } catch (error) {
-    }
-},
-},
+        this.usersLoading = true;
+        await this.fetchUsers();
+        this.usersLoading = false;
+    },
+    methods: {
+        async fetchUsers() {
+            try {
+                const userList = await getUsers();
+                this.userList = userList;
+            } catch (error) {
+            }
+        },
+    },
 };
 </script>
 
 <template>
   <Loader v-if="usersLoading"></Loader>
   <template v-else>
-    <div class="text-center">
-      <h1 class="text-3xl font-black mb-4">Usuarios</h1>
-      <p class="mb-2">Listado de usuarios</p>
-      <table class="min-w-full border border-gray-300">
-        <thead>
+    <div class="max-w-5xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+      <h1 class="text-3xl font-black mb-6 text-center">Usuarios</h1>
+      <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
+        <thead class="bg-gray-200">
           <tr>
-            <th class="border border-gray-300 px-4 py-2">Email</th>
-            <th class="border border-gray-300 px-4 py-2">Acciones</th>
+            <th class="border-b border-gray-300 px-6 py-4 text-left text-gray-700">Email</th>
+            <th class="border-b border-gray-300 px-6 py-4 text-left text-gray-700">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="user in userList" :key="user.id">
-            <td class="border border-gray-300 px-4 py-2">{{ user.email }}</td>
-            <td class="border border-gray-300 px-4 py-2">
-              <router-link :to="`/usuario/${user.id}/chat`" class="text-blue-600 underline mr-2">
+          <tr v-for="user in userList" :key="user.id" class="hover:bg-gray-100">
+            <td class="border-b border-gray-300 px-6 py-4">{{ user.email }}</td>
+            <td class="border-b border-gray-300 px-6 py-4">
+              <router-link :to="`/usuario/${user.id}/chat`" class="text-blue-500 hover:underline mr-4">
                 Chatear
               </router-link>
-              <router-link :to="`/usuario/${user.id}/cursos`" class="text-green-600 underline">
-                Ver cursos
+              <router-link :to="`/usuario/${user.id}/planes`" class="text-green-500 hover:underline">
+                Ver planes
               </router-link>
             </td>
           </tr>

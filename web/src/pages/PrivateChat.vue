@@ -3,7 +3,7 @@ import BaseButton from '../components/BaseButton.vue';
 import BaseTextarea from '../components/BaseTextarea.vue';
 import Loader from '../components/Loader.vue';
 import { sendPrivateChatMessage, subscribeToPrivateChat } from '../services/private-chat';
-import { subscribeToAuth } from '../services/Auth';
+import { subscribeToAuth } from '../services/auth';
 import { getUserProfileById } from '../services/user';
 import { dateToString } from '../helpers/date'
 import { auth } from '../services/firebase';
@@ -72,7 +72,7 @@ export default {
         <template v-else>
             <h1 class="text-3xl font-black mb-4 text-center">Conversación con {{ user.email }}</h1>
             <h2 class="sr-only">Mensajes</h2>
-            <div class="flex flex-col items-start min-h-[400px] max-w-[800px] mx-auto p-4 mb-4 border border-gray-300 rounded">
+            <div class="flex flex-col items-start min-h-[400px] max-w-[800px] mx-auto p-4 mb-4 border rounded-lg bg-white shadow-lg">
                 <Loader v-if="messagesLoading"></Loader>
                 <template v-else>
                     <div v-for="message in messages"
@@ -98,7 +98,7 @@ export default {
                 <label for="message" class="sr-only"></label>
                 <BaseTextarea
                 id="message"
-                class="w-10/12"
+                class="w-10/12 border border-gray-300 rounded-lg"
                 v-model="newMessage.message"
                 />
                 <Button class="bg-green-600 rounded text-white w-2/12">Enviar</Button>

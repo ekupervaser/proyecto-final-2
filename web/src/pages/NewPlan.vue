@@ -6,7 +6,7 @@ import BaseLabel from '../components/BaseLabel.vue';
 import BaseTextarea from '../components/BaseTextarea.vue';
 
 export default {
-    name: 'NewCourse',
+    name: 'NewPlan',
     components: { BaseButton, BaseInput, BaseLabel, BaseTextarea },
     data() {
         return {
@@ -70,7 +70,7 @@ export default {
 
 <template>
     <div class="max-w-screen-sm flex flex-col justify-center m-auto">
-    <h1 class="text-3xl font-black mb-4 text-center">Cargar nuevo curso</h1>
+    <h1 class="text-3xl font-black mb-4 text-center">Cargar nuevo plan</h1>
     <p class="font-black mb-4">Agrega el ítem a continuación</p>
     <form action="#"
     @submit.prevent="saveCourse"

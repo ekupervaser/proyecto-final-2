@@ -4,24 +4,24 @@ import PrivateChat from '../pages/PrivateChat.vue'
 import Register from '../pages/Register.vue'
 import Login from '../pages/Login.vue'
 import Panel from '../pages/Panel.vue'
-import NewCourse from '../pages/NewCourse.vue'
-import Courses from '../pages/Courses.vue'
+import NewPlan from '../pages/NewPlan.vue'
+import Plans from '../pages/Plans.vue'
 import Contact from '../pages/Contact.vue'
 import UsersList from '../pages/UsersList.vue'
-import UserCourses from '../pages/UserCourses.vue'
+import UserPlans from '../pages/UserPlans.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { subscribeToAuth } from '../services/Auth'
+import { subscribeToAuth } from '../services/auth'
 
 const routes = [
     {path: '/',                   component: Home},
     {path: '/perfil',             component: MyProfile,      meta: { requiresAuth: true }, },
     {path: '/usuario/:id/chat',   component: PrivateChat,    meta: { requiresAuth: true }, },
-    {path: '/usuario/:id/cursos', component: UserCourses,    meta: { requiresAuth: true }, },
+    {path: '/usuario/:id/planes', component: UserPlans,      meta: { requiresAuth: true }, },
     {path: '/panel',              component: Panel,          meta: { requiresAuth: true }, },
-    {path: '/cargar-curso',       component: NewCourse,      meta: { requiresAuth: true }, },
+    {path: '/cargar-plan',        component: NewPlan,        meta: { requiresAuth: true }, },
     {path: '/contacto',           component: Contact,        meta: { requiresAuth: true }, },
     {path: '/usuarios',           component: UsersList,      meta: { requiresAuth: true }, },
-    {path: '/servicios',          component: Courses,        meta: { requiresAuth: true }, },
+    {path: '/planes',             component: Plans,          meta: { requiresAuth: true }, },
     {path: '/registro',           component: Register},
     {path: '/login',              component: Login},
 

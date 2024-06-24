@@ -34,9 +34,8 @@ export default {
 </script>
 
 <template>
-
     <header>
-        <div class="bg-black text-white">
+        <div class="bg-[#3B413C] text-white">
             <div class="container m-auto flex justify-between gap-4 items-center p-4">
                 <div>
                     <img src="../favicon-32x32.png" alt="Favicon">
@@ -70,7 +69,7 @@ export default {
                             </template>
                             <template v-if="userFirestore.role !== 'admin'">
                                 <li>
-                                    <router-link to="/servicios">Servicios</router-link>
+                                    <router-link to="/planes">Planes</router-link>
                                 </li>
                                 <li>
                                     <router-link to="/contacto">Contacto</router-link>
