@@ -2,7 +2,7 @@
 import BaseButton from '../components/BaseButton.vue'
 import BaseLabel from '../components/BaseLabel.vue';
 import BaseInput from '../components/BaseInput.vue';
-import { register } from '../services/Auth';
+import { register } from '../services/auth';
 
 export default {
     name: 'Register',
