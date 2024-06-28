@@ -2,7 +2,7 @@
 import BaseButton from '../components/BaseButton.vue';
 import BaseLabel from '../components/BaseLabel.vue';
 import BaseInput from '../components/BaseInput.vue';
-import { login, isAuthenticated } from '../services/Auth';
+import { login, isAuthenticated } from '../services/auth';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
