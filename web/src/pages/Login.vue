@@ -38,7 +38,7 @@ const doLogin = async () => {
 
 </script>
 <template>
-    <div class="max-w-screen-sm flex flex-col justify-center m-auto">
+    <div class="max-w-screen-sm flex flex-col justify-center m-auto" style="height: calc(100vh - 136px)">
         <h1 class="text-3xl font-black mb-4">Iniciar sesión</h1>
         <form action="#"
         @submit.prevent="doLogin"
