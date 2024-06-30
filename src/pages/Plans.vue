@@ -1,5 +1,5 @@
 <script>
-import PlanCards from '../components/PlanCards.vue'
+import PlanCards from '../components/UserPlanCards.vue'
 
 export default {
     name: 'Plans',

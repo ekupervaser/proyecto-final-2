@@ -2,19 +2,21 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTruck, faTshirt, faLeaf, faTags, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
+import GeneralPlanCards from '../components/GeneralPlanCards.vue'
 
 library.add(faTruck, faTshirt, faLeaf, faTags, faPhoneAlt)
 
 export default {
   name: 'Home',
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon, 
+    GeneralPlanCards
   }
 }
 </script>
 
 <template>
-  <div className="relative  overflow-hidden" style="height: calc(100vh - 160px)">
+  <div className="relative overflow-hidden" style="height: calc(100vh - 160px)">
     <video className="absolute top-0 left-0 w-full h-auto object-cover z-1" style="height: calc(100vh - 160px)" src="/video-home.mp4" autoplay muted loop></video>
     <div className="absolute inset-0 flex flex-col justify-center items-center text-center bg-black bg-opacity-50 p-4">
       <header className="py-6 max-w-4xl mx-auto">
@@ -68,7 +70,7 @@ export default {
     </div>
   </section>
 
-  <section className="bg-white py-12">
+  <section className="py-12 inset-0 bg-cover bg-center bg-opacity-20" style="background-image: url('/logo-con-opacidad.png');">
     <div className="container mx-auto px-4">
       <h2 className="text-3xl font-bold mb-8 text-center">¿Por qué elegirnos?</h2>
       <div className="flex flex-wrap justify-center items-center">
@@ -90,18 +92,19 @@ export default {
             <p>Nos gusta premiar a nuestros clientes leales. Regularmente lanzamos promociones y descuentos especiales para que puedas disfrutar de nuestros servicios premium a precios aún más atractivos.</p>
           </div>
         </div>
-        <div className="w-full lg:w-1/3 p-4 flex justify-center">
-          <img src="/clothes.png" alt="Persona esperando" className="rounded-lg w-80" />
-        </div>
       </div>
     </div>
   </section>
 
+  <section className="container py-8">
+    <h2 className="text-3xl font-bold mb-4 text-center">¡Probá la Diferencia Hoy Mismo!</h2>
+    <GeneralPlanCards></GeneralPlanCards>
+  </section>
+
   <section className="bg-[#FFCCBC] py-12">
-    <div className="container mx-auto text-center px-4">
-      <h2 className="text-3xl font-bold mb-4">¡Probá la Diferencia Hoy Mismo!</h2>
+    <div className="mx-auto text-center px-4">
       <p className="text-lg mb-8">Elegir <b>SHINE</b> significa optar por un servicio de lavandería que entiende y satisface tus necesidades.</p>
-      <router-link to="/planes" class="bg-white px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Suscribite a Shine</router-link>
+      <router-link to="/planes" class="bg-white px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Registrate</router-link>
     </div>
   </section>
 </template>

@@ -64,5 +64,7 @@ const doLogin = async () => {
             <BaseButton :loading="loginLoading">Iniciar sesión</BaseButton>
         </form>
             <div v-if="loginErrorMessage" class="text-red-500 mt-2">{{ loginErrorMessage }}</div>
+            <p>¿No tenés usuario? <router-link to="/registro" class="font-bold hover:bg-gray-100 transition">Registrate</router-link></p>
+
      </div>
 </template>
