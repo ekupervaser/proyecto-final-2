@@ -20,6 +20,7 @@
                   name: doc.data().name,
                   description: doc.data().description,
                   price: doc.data().price.toLocaleString("es"),
+                  benefits: doc.data().benefits,
               };
           });
 

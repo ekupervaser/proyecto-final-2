@@ -2,7 +2,13 @@
 import { ref, onMounted } from 'vue';
 import { importCursos } from '../services/shine-services';
 import Loader from './Loader.vue';
-import BaseButton from './BaseButton.vue';
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faCheck)
+
 
 const isLoading = ref(true);
 const courses = ref([]);
@@ -29,6 +35,12 @@ onMounted(() => {
         <div>
           <h2 class="text-xl font-bold mb-2">{{ course.name }}</h2>
           <p class="text-gray-600">{{ course.description }}</p>
+          <ul class="mt-2">
+            <li class="flex" v-for="(benefit, index) in course.benefits" :key="index">
+                <font-awesome-icon :icon="['fas', 'check']" class="mt-1 mr-1 text-[#94D1BF]"/> 
+                <p class="text-gray-600">{{ benefit.text }}</p>
+            </li>
+        </ul>
         </div>
         <div class="mt-4">
           <p class="bg-slate-200 px-2 rounded font-bold w-fit">${{ course.price }}</p>

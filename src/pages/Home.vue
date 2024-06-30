@@ -1,10 +1,10 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTruck, faTshirt, faLeaf, faTags, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTruck, faTshirt, faLeaf, faTags, faPhoneAlt, faCheck } from '@fortawesome/free-solid-svg-icons'
 import GeneralPlanCards from '../components/GeneralPlanCards.vue'
 
-library.add(faTruck, faTshirt, faLeaf, faTags, faPhoneAlt)
+library.add(faTruck, faTshirt, faLeaf, faTags, faPhoneAlt, faCheck)
 
 export default {
   name: 'Home',

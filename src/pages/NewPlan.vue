@@ -17,11 +17,13 @@ export default {
                name: '',
                description: '',
                price: '',
+               benefits: [],
             },
             validationErrors: {
             name: '',
             description: '',
             price: '',
+            benefits: '',
             },
        }
     },
@@ -53,6 +55,13 @@ export default {
                 this.validationErrors.price = '';
             }
 
+            if (this.newCourse.benefits.length === 0) {
+            this.validationErrors.benefits = 'Agrega al menos un beneficio para el curso';
+            isValid = false;
+            } else {
+                this.validationErrors.benefits = '';
+            }
+
             return isValid;
             },
             saveCourse() {
@@ -62,10 +71,20 @@ export default {
                 name: this.newCourse.name,
                 description: this.newCourse.description,
                 price: this.newCourse.price,
+                benefits: this.newCourse.benefits,
             })
             this.$router.push("/panel");
-        }},
-    }
+        },
+    addBenefit() {
+      this.newCourse.benefits.push({ text: '' });
+    },
+
+    removeBenefit(index) {
+      this.newCourse.benefits.splice(index, 1);
+    },
+},
+}
+    
 </script>
 
 <template>
@@ -96,6 +115,16 @@ export default {
                 v-model="newCourse.price"/>
                 <p class="text-red-500">{{ validationErrors.price }}</p>
             </div>
+            <div>
+        <BaseLabel modelFor="benefits">Beneficios</BaseLabel>
+        <div v-for="(benefit, index) in newCourse.benefits" :key="index">
+          <BaseInput v-model="benefit.text" />
+          <button type="button" @click="removeBenefit(index)">Eliminar</button>
+        </div>
+        <button type="button" @click="addBenefit">Agregar Beneficio</button>
+        <p class="text-red-500">{{ validationErrors.benefits }}</p>
+      </div>
+
             <BaseButton type="submit">Cargar curso</BaseButton>
         </form>
     </div>
