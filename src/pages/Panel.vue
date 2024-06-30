@@ -15,9 +15,9 @@ export default {
 </script>
 
 <template>
-    <p class="text-xl font-black mb-6 text-center">Administrar planes de suscripción</p>
+    <p class="text-xl mt-5 font-black mb-6 text-center">Administrar planes de suscripción</p>
     <PlanPanel></PlanPanel>
-    <div class="flex">
+    <div class="container flex">
         <router-link class="my-5 py-3 px-3 rounded w-full text-center bg-blue-700 text-white hover:bg-blue-600 disabled:bg-blue-400 active:bg-blue-800 transition" :to="`/cargar-plan`">Cargar nuevo plan</router-link>
     </div>
 </template>

@@ -125,7 +125,7 @@ export default {
         <p class="text-red-500">{{ validationErrors.benefits }}</p>
       </div>
 
-            <BaseButton type="submit">Cargar curso</BaseButton>
+            <BaseButton type="submit">Cargar plan</BaseButton>
         </form>
     </div>
 </template>
