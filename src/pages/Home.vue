@@ -70,31 +70,34 @@ export default {
     </div>
   </section>
 
-  <section className="py-12 inset-0 bg-cover bg-center bg-opacity-20" style="background-image: url('/logo-con-opacidad.png');">
-    <div className="container mx-auto px-4">
-      <h2 className="text-3xl font-bold mb-8 text-center">¿Por qué elegirnos?</h2>
-      <div className="flex flex-wrap justify-center items-center">
-        <div className="w-full lg:w-2/3 p-4">
-          <div className="mb-4">
-            <h3 className="text-2xl font-bold mb-2">Calidad Insuperable</h3>
-            <p>Nuestra prioridad es que tus prendas reciban el mejor tratamiento posible. Utilizamos tecnología avanzada y productos de limpieza de alta calidad que aseguran resultados impecables.</p>
-          </div>
-          <div className="mb-4">
-            <h3 className="text-2xl font-bold mb-2">Comodidad a tu Alcance</h3>
-            <p>Sabemos que tu tiempo es valioso. Con un par de clics en nuestra plataforma, podés programar la recogida y entrega, sin necesidad de desplazarte.</p>
-          </div>
-          <div className="mb-4">
-            <h3 className="text-2xl font-bold mb-2">Sostenibilidad y Responsabilidad</h3>
-            <p>Utilizamos productos ecológicos y técnicas de lavado eficientes que reducen el impacto ambiental. Al elegirnos, también estás contribuyendo a un futuro más sostenible.</p>
-          </div>
-          <div className="mb-4">
-            <h3 className="text-2xl font-bold mb-2">Promociones y Ofertas Exclusivas</h3>
-            <p>Nos gusta premiar a nuestros clientes leales. Regularmente lanzamos promociones y descuentos especiales para que puedas disfrutar de nuestros servicios premium a precios aún más atractivos.</p>
-          </div>
+  <section class="py-12 inset-0 bg-cover bg-[] relative">
+    <div class="container space-between mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-8 text-center">¿Por qué elegirnos?</h2>
+        <div class="flex flex-wrap">
+            <div class="w-full lg:w-2/3 p-4">
+                <div class="mb-4">
+                    <h3 class="text-2xl font-bold mb-2">Calidad Insuperable</h3>
+                    <p>Nuestra prioridad es que tus prendas reciban el mejor tratamiento posible. Utilizamos tecnología avanzada y productos de limpieza de alta calidad que aseguran resultados impecables.</p>
+                </div>
+                <div class="mb-4">
+                    <h3 class="text-2xl font-bold mb-2">Comodidad a tu Alcance</h3>
+                    <p>Sabemos que tu tiempo es valioso. Con un par de clics en nuestra plataforma, podés programar la recogida y entrega, sin necesidad de desplazarte.</p>
+                </div>
+                <div class="mb-4">
+                    <h3 class="text-2xl font-bold mb-2">Sostenibilidad y Responsabilidad</h3>
+                    <p>Utilizamos productos ecológicos y técnicas de lavado eficientes que reducen el impacto ambiental. Al elegirnos, también estás contribuyendo a un futuro más sostenible.</p>
+                </div>
+                <div class="mb-4">
+                    <h3 class="text-2xl font-bold mb-2">Promociones y Ofertas Exclusivas</h3>
+                    <p>Nos gusta premiar a nuestros clientes leales. Regularmente lanzamos promociones y descuentos especiales para que puedas disfrutar de nuestros servicios premium a precios aún más atractivos.</p>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="mt-5 hidden lg:block absolute inset-y-0 right-0 overflow-hidden">
+                <img src="/logo-con-opacidad.png" alt="Logo" class="h-full w-auto max-w-full transform translate-x-1/2" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%)">
+        </div>
     </div>
-  </section>
+</section>
 
   <section className="container py-8">
     <h2 className="text-3xl font-bold mb-4 text-center">¡Probá la Diferencia Hoy Mismo!</h2>
