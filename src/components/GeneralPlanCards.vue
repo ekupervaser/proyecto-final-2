@@ -43,7 +43,7 @@ onMounted(() => {
         </ul>
         </div>
         <div class="mt-4">
-          <p class="bg-slate-200 px-2 rounded font-bold w-fit">${{ course.price }}</p>
+          <p class="px-2 text-xl rounded font-bold w-fit">${{ course.price }}</p>
           <div class="my-3 w-full">
             <router-link to="/login" class="py-2 px-3 rounded w-full bg-[#94D1BF] hover:bg-[#A8D9CD] active:bg-[#7BB8A6] disabled:bg-[#C1E5DF] text-white transition block text-center">Suscribirme</router-link>
             </div>

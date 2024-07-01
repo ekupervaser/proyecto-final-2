@@ -5,6 +5,7 @@ import Register from '../pages/Register.vue'
 import Login from '../pages/Login.vue'
 import Panel from '../pages/Panel.vue'
 import NewPlan from '../pages/NewPlan.vue'
+import MyPlans from '../pages/MyPlans.vue'
 import Plans from '../pages/Plans.vue'
 import Contact from '../pages/Contact.vue'
 import UsersList from '../pages/UsersList.vue'
@@ -21,7 +22,8 @@ const routes = [
     {path: '/cargar-plan',        component: NewPlan,        meta: { requiresAuth: true }, },
     {path: '/contacto',           component: Contact,        meta: { requiresAuth: true }, },
     {path: '/usuarios',           component: UsersList,      meta: { requiresAuth: true }, },
-    {path: '/planes',             component: Plans,          meta: { requiresAuth: true }, },
+    { path: '/mis-planes', component: MyPlans,               meta: { requiresAuth: true } },    
+    {path: '/planes',             component: Plans,          },
     {path: '/registro',           component: Register},
     {path: '/login',              component: Login},
 

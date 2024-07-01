@@ -22,6 +22,13 @@ export default {
              this.user = {id: null, email:null};
              this.userFirestore = {};
              this.$router.push('/login');
+        },
+        navigateToPlans() {
+            if (this.user.id) {
+                this.$router.push('/mis-planes');
+            } else {
+                this.$router.push('/planes');
+            }
         }
     },
     mounted() {
@@ -47,6 +54,9 @@ export default {
                         </li>
                         <template v-if="!user.id">
                             <li>
+                                <button @click="navigateToPlans">Planes</button>
+                            </li>
+                            <li>
                                 <router-link to="/registro">Registro</router-link>
                             </li>
                             <li>
@@ -69,10 +79,10 @@ export default {
                             </template>
                             <template v-if="userFirestore.role !== 'admin'">
                                 <li>
-                                    <router-link to="/planes">Planes</router-link>
+                                    <router-link to="/contacto">Contacto</router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/contacto">Contacto</router-link>
+                                    <button @click="navigateToPlans">Planes</button>
                                 </li>
                             </template>
                             
@@ -89,7 +99,6 @@ export default {
             </div>
         </div>
     </header>
-
     <router-view></router-view>
     <Footer></Footer>
 </template>
