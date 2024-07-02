@@ -2,7 +2,6 @@
 import { ref, onMounted } from 'vue';
 import { importCursos } from '../services/shine-services';
 import Loader from './Loader.vue';
-
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'

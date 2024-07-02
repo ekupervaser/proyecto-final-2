@@ -78,7 +78,7 @@ async function purchaseCourse(userId, courseId) {
         <div class="mt-4">
           <p v-if="!course.isPurchased" class="bg-slate-200 px-2 rounded font-bold w-fit">${{ course.price }}</p>
           <button v-if="!course.isPurchased" @click="purchaseCourse(user.id, course.id)"
-            class="mt-2 bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">
+            class="mt-2 bg-[#94D1BF] text-white px-4 py-2 rounded cursor-pointer">
             <span v-if="course.isPurchasing">
               <Loader></Loader>
             </span>

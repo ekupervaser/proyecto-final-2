@@ -77,12 +77,12 @@ export default {
                                     <router-link to="/panel">Panel</router-link>
                                 </li>
                             </template>
+                                <li>
+                                    <button @click="navigateToPlans">Planes</button>
+                                </li>
                             <template v-if="userFirestore.role !== 'admin'">
                                 <li>
                                     <router-link to="/contacto">Contacto</router-link>
-                                </li>
-                                <li>
-                                    <button @click="navigateToPlans">Planes</button>
                                 </li>
                             </template>
                             
