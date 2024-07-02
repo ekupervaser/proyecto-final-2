@@ -30,7 +30,7 @@ export default {
 
   <section class="flex justify-center bg-gray-200 w-auto mx-auto -mt-12">
     <div class="bg-white rounded-lg p-6 shadow-lg max-w-4xl mx-auto z-10">
-      <p class="text-lg">Sabemos lo importante que es para vos mantener tus prendas en perfecto estado, y por eso, combinamos tecnología de punta con un equipo de expertos comprometidos con la excelencia.</p>
+      <p class="text-lg">Sabemos lo importante que es para vos mantener tus prendas en perfecto estado, y por eso, combinamos <strong>tecnología de punta</strong> con un <strong>equipo de expertos</strong> comprometidos con la excelencia.</p>
     </div>
   </section>
 
