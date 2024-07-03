@@ -36,39 +36,48 @@ export default {
 
   <section class="bg-gray-200 py-12">
     <div class="container mx-auto text-center px-4">
-      <h2 class="text-3xl font-bold mb-8">¿Qué ofrecemos?</h2>
-      <div class="flex flex-wrap justify-center">
-        <div class="w-full sm:w-1/2 lg:w-1/4 p-4">
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <div class="text-4xl text-[#94D1BF] mb-4"><font-awesome-icon :icon="['fas', 'truck']" /></div>
-            <h3 class="text-xl font-bold mb-4">Servicio a Domicilio</h3>
-            <p>Recogemos y entregamos tu ropa en la comodidad de tu hogar.</p>
-          </div>
+        <h2 class="text-3xl font-bold mb-8">¿Qué ofrecemos?</h2>
+        <div class="flex flex-wrap justify-center">
+            <div class="w-full sm:w-1/2 lg:w-1/4 p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col h-full">
+                    <div class="text-4xl text-[#94D1BF] mb-4">
+                        <font-awesome-icon :icon="['fas', 'truck']" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Servicio a Domicilio</h3>
+                    <p class="flex-grow">Recogemos y entregamos tu ropa en la comodidad de tu hogar.</p>
+                </div>
+            </div>
+            <div class="w-full sm:w-1/2 lg:w-1/4 p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col h-full">
+                    <div class="text-4xl text-[#94D1BF] mb-4">
+                        <font-awesome-icon :icon="['fas', 'tshirt']" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Tratamiento Especializado</h3>
+                    <p class="flex-grow">Cuidado especial para prendas delicadas y artículos de limpieza complejos.</p>
+                </div>
+            </div>
+            <div class="w-full sm:w-1/2 lg:w-1/4 p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col h-full">
+                    <div class="text-4xl text-[#94D1BF] mb-4">
+                        <font-awesome-icon :icon="['fas', 'leaf']" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Sostenibilidad</h3>
+                    <p class="flex-grow">Utilizamos productos ecológicos que cuidan tu ropa y el medio ambiente.</p>
+                </div>
+            </div>
+            <div class="w-full sm:w-1/2 lg:w-1/4 p-4">
+                <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col h-full">
+                    <div class="text-4xl text-[#94D1BF] mb-4">
+                        <font-awesome-icon :icon="['fas', 'tags']" />
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Promociones y Descuentos</h3>
+                    <p class="flex-grow">Tenemos promociones y descuentos para vos.</p>
+                </div>
+            </div>
         </div>
-        <div class="w-full sm:w-1/2 lg:w-1/4 p-4">
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <div class="text-4xl text-[#94D1BF] mb-4"><font-awesome-icon :icon="['fas', 'tshirt']" /></div>
-            <h3 class="text-xl font-bold mb-4">Tratamiento Especializado</h3>
-            <p>Cuidado especial para prendas delicadas y artículos de limpieza complejos.</p>
-          </div>
-        </div>
-        <div class="w-full sm:w-1/2 lg:w-1/4 p-4">
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <div class="text-4xl text-[#94D1BF] mb-4"><font-awesome-icon :icon="['fas', 'leaf']" /></div>
-            <h3 class="text-xl font-bold mb-4">Sostenibilidad</h3>
-            <p>Utilizamos productos ecológicos que cuidan tu ropa y el medio ambiente.</p>
-          </div>
-        </div>
-        <div class="w-full sm:w-1/2 lg:w-1/4 p-4">
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <div class="text-4xl text-[#94D1BF] mb-4"><font-awesome-icon :icon="['fas', 'tags']" /></div>
-            <h3 class="text-xl font-bold mb-4">Promociones y Descuentos</h3>
-            <p>Tenemos promociones y descuentos para vos.</p>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
+</section>
+
 
   <section class="py-12 inset-0 bg-cover relative">
     <div class="container mx-auto">
