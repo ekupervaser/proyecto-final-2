@@ -132,9 +132,9 @@ function useProfileEdit(user) {
                 <div class="flex w-full justify-center items-start space-x-10" v-if="!editing && !editingPhoto">
                     <div class="flex flex-col items-center p-6 mb-4 bg-white shadow rounded-lg">
                         <img v-if="user.photoURL" :src="user.photoURL" alt="Foto del perfil" class="w-[100px] h-[100px] rounded-full object-cover">
-    <!--                     <img v-else src="public/user.png" alt="Sin foto del perfil" class="w-[150px] h-[150px] rounded-full object-cover">
-    -->                    <button
-                            class="bg-blue-500 text-white p-2 rounded-full mt-4 text-sm hover:bg-blue-600"
+<!--                    <img v-else src="public/user.png" alt="Sin foto del perfil" class="w-[150px] h- [150px] rounded-full object-cover">  -->                   
+                        <button
+                            class="bg-black text-white p-2 rounded-full mt-4 text-sm hover:bg-blue-600"
                             @click="handlePhotoFormShow"
                         >
                             {{ user.photoURL ? 'Actualizar' : 'Cargar' }}
@@ -144,8 +144,8 @@ function useProfileEdit(user) {
                             <p class="mb-2">{{ user.email }}</p>
                             <p class="font-bold">Nombre</p>
                             <p class="mb-2">{{ user.displayName || 'No especificado' }}</p>
-                            <p class="font-bold">Rol</p>
-                            <p>{{ user.role || 'Usuario estándar' }}</p>
+                          <!--   <p class="font-bold">Rol</p>
+                            <p>{{ user.role || 'Usuario estándar' }}</p> -->
                             <BaseButton @click="handleEditShow" class="mt-4">Editar mis datos</BaseButton>
                         </div>
                     </div>
@@ -211,7 +211,7 @@ function useProfileEdit(user) {
             </div>
         </template>
         <template v-else>
-            <Loader></Loader>
+            <Loader style="height: calc(100vh - 184px);"></Loader>
         </template>
     </div>
 </template>
