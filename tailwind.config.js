@@ -19,6 +19,9 @@ export default {
       gridTemplateRows: {
         layout: '64px 1fr 100px',
       },
+      fontFamily: {
+        sans: ['Red Hat Display', 'sans-serif'],
+      },
     },
   },
   plugins: [],
