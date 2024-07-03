@@ -132,9 +132,9 @@ function useProfileEdit(user) {
                 <div class="flex w-full justify-center items-start space-x-10" v-if="!editing && !editingPhoto">
                     <div class="flex flex-col items-center p-6 mb-4 bg-white shadow rounded-lg">
                         <img v-if="user.photoURL" :src="user.photoURL" alt="Foto del perfil" class="w-[100px] h-[100px] rounded-full object-cover">
-<!--                    <img v-else src="public/user.png" alt="Sin foto del perfil" class="w-[150px] h- [150px] rounded-full object-cover">  -->                   
+                        <img v-else src="/user.png" alt="Sin foto del perfil" class="w-[100px] h- [100px] rounded-full object-cover">            
                         <button
-                            class="bg-black text-white p-2 rounded-full mt-4 text-sm hover:bg-blue-600"
+                            class="bg-black text-white p-2 rounded-full mt-4 text-sm hover:bg-[grey]"
                             @click="handlePhotoFormShow"
                         >
                             {{ user.photoURL ? 'Actualizar' : 'Cargar' }}
