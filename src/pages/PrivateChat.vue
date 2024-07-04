@@ -68,6 +68,7 @@ export default {
 </script>
 
 <template>
+    <div class="py-10">
       <Loader style="height: calc(100vh - 136px);" v-if="userLoading"></Loader>
         <template v-else>
             <h1 class="text-3xl font-black mb-4 text-center">Conversación con {{ authUser.role ? user.email : "Soporte de Shine" }}</h1>
@@ -104,4 +105,5 @@ export default {
                 <Button class="bg-green-600 rounded text-white w-2/12">Enviar</Button>
             </form>
         </template>
+    </div>
 </template>
