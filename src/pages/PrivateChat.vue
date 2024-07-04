@@ -53,8 +53,8 @@ export default {
         this.messagesLoading = true;
         this.unsubscribeMessages = await subscribeToPrivateChat(
             {
-                senderId: this.authUser.id,
-                receiverId: this.user.id,
+                senderId: this.authUser.role ? 'KOJ6Xn66d5YaYOeTPczEZlUTOGG3' : this.authUser.id,
+                receiverId: this.authUser.role ? this.user.id : 'KOJ6Xn66d5YaYOeTPczEZlUTOGG3',
             }, 
             (newMessages) => this.messages = newMessages
         );
