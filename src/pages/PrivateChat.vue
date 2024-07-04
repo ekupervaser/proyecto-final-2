@@ -48,7 +48,6 @@ export default {
         this.userLoading = true;
         this.user = await getUserProfileById(this.$route.params.id);
         this.unsubscribeAuth = subscribeToAuth(newUser => this.authUser = newUser);
-        console.log({user: this.user, authUser: this.authUser});
         this.userLoading = false;
         this.messagesLoading = true;
         this.unsubscribeMessages = await subscribeToPrivateChat(
