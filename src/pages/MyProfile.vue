@@ -125,11 +125,10 @@ function useProfileEdit(user) {
 </script>
 
 <template>
-    <div class="p-6">
-        <template v-if="!userLoading">
+    <div class="min-h-full p-10">
+        <h1 class="text-3xl font-bold mb-6 text-center">Mi perfil</h1>
             <div class="flex flex-col items-center bg-gray-100 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
-                <h1 class="text-3xl font-bold mb-6 text-center">Mi perfil</h1>
-                <div class="flex w-full justify-center items-start space-x-10" v-if="!editing && !editingPhoto">
+                <div class="flex w-full justify-center items-start gap-4" v-if="!editing && !editingPhoto">
                     <div class="flex flex-col items-center p-6 mb-4 bg-white shadow rounded-lg">
                         <img v-if="user.photoURL" :src="user.photoURL" alt="Foto del perfil" class="w-[100px] h-[100px] rounded-full object-cover">
                         <img v-else src="/user.png" alt="Sin foto del perfil" class="w-[100px] h- [100px] rounded-full object-cover">            
@@ -139,18 +138,19 @@ function useProfileEdit(user) {
                         >
                             {{ user.photoURL ? 'Actualizar' : 'Cargar' }}
                         </button>
-                        <div class="mt-6 text-center">
+                        <div class="mt-6">
                             <p class="font-bold">Email</p>
                             <p class="mb-2">{{ user.email }}</p>
                             <p class="font-bold">Nombre</p>
                             <p class="mb-2">{{ user.displayName || 'No especificado' }}</p>
                           <!--   <p class="font-bold">Rol</p>
                             <p>{{ user.role || 'Usuario estándar' }}</p> -->
-                            <BaseButton @click="handleEditShow" class="mt-4">Editar mis datos</BaseButton>
+                            <BaseButton @click="handleEditShow" class="mt-4">Editar</BaseButton>
                         </div>
                     </div>
-                    <div class="flex flex-col items-center p-6 mb-4 bg-white shadow rounded-lg">
-                        <h2 class="mb-3 text-xl font-bold">Mis planes</h2>
+                    <div class="w-full">
+                    <div class="w-full flex flex-col items-center p-6 mb-4 bg-white shadow rounded-lg">
+                        <h2 class="mb-3 text-xl font-bold">Mi plan</h2>
                         <template v-if="!user.coursesPurchased || user.coursesPurchased.length === 0">
                             <p>Actualmente no tenés ninguna suscripción activa.</p>
                         </template>
@@ -162,6 +162,20 @@ function useProfileEdit(user) {
                             </ul>
                         </template>
                     </div>
+                    <div class="w-full flex flex-col items-center p-6 mb-4 bg-white shadow rounded-lg">
+                        <h2 class="mb-3 text-xl font-bold">Mis pedidos</h2>
+                        <template v-if="!user.coursesPurchased || user.coursesPurchased.length === 0">
+                            <p>Actualmente no tenés ninguna suscripción activa.</p>
+                        </template>
+                        <template v-else>
+                            <ul class="list-disc pl-5">
+                                <li v-for="course in user.coursesPurchased" :key="course.id">
+                                    {{ formatFirebaseDate(course.purchaseDate) }} - {{ course.name }}
+                                </li>
+                            </ul>
+                        </template>
+                    </div>
+                </div>
                 </div>
                 <template v-else-if="editing">
                     <form action="#" method="post" @submit.prevent="handleEditForm" class="w-full max-w-md mx-auto">
@@ -209,9 +223,11 @@ function useProfileEdit(user) {
                     </form>
                 </template>
             </div>
-        </template>
-        <template v-else>
-            <Loader style="height: calc(100vh - 184px);"></Loader>
-        </template>
     </div>
 </template>
+
+<style>
+    .min-h-full {
+        min-height: calc(100vh - 136px);
+    }
+</style>

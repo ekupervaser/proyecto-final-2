@@ -1,15 +1,17 @@
 <script setup>
+import { useAuth } from '../composition/useAuth'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faComments, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faComments, faEnvelope, faPhone)
 
+const { user } = useAuth();
+
 </script>
 
 <template>
-    <div class="m-auto p-6" style="height: calc(100vh - 136px);">
-        <div class="p-6">
+    <div class="min-h-full p-10">
             <div>
                 <h1 class="text-3xl font-black mb-4 text-center">Contacto</h1>
                 <p class="text-center mb-10">Elige el medio que prefieras para contactarte con nuestro equipo</p>
@@ -19,7 +21,7 @@ library.add(faComments, faEnvelope, faPhone)
                     <font-awesome-icon :icon="['fas', 'comments']" class="my-1 mr-1 text-[#94D1BF] text-5xl"/>                
                     <h2 class="mt-2 mb-2 text-xl font-bold">Chat</h2>
                     <router-link 
-                    :to="`/usuario/lpzKk2JucWR1Bqyr3IOWlht8LQ33/chat`"
+                    :to="`/usuario/${user.id}/chat`"
                     class="text-blue-600">Chatea con un ejecutivo de Shine</router-link>
                 </div>
                 <div class="flex flex-col items-center">
@@ -33,6 +35,11 @@ library.add(faComments, faEnvelope, faPhone)
                     <p>Comunicate al +54 9 11 49384958</p>
                 </div>
             </template>
-        </div>
     </div>
 </template>
+
+<style>
+    .min-h-full {
+        min-height: calc(100vh - 136px);
+    }
+</style>

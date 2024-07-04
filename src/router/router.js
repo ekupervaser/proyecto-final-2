@@ -22,8 +22,8 @@ const routes = [
     {path: '/cargar-plan',        component: NewPlan,        meta: { requiresAuth: true }, },
     {path: '/contacto',           component: Contact,        meta: { requiresAuth: true }, },
     {path: '/usuarios',           component: UsersList,      meta: { requiresAuth: true }, },
-    { path: '/mis-planes', component: MyPlans,               meta: { requiresAuth: true } },    
-    {path: '/planes',             component: Plans,          },
+    {path: '/mis-planes',         component: MyPlans,        meta: { requiresAuth: true } },    
+    {path: '/planes',             component: Plans},
     {path: '/registro',           component: Register},
     {path: '/login',              component: Login},
 

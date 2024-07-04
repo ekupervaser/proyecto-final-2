@@ -17,6 +17,7 @@ export default {
             user: {
                 id: null,
                 email: null,
+                role: null,
             },
             authUser: {
                 id: null,
@@ -47,6 +48,7 @@ export default {
     async mounted() {
         this.userLoading = true;
         this.user = await getUserProfileById(this.$route.params.id);
+        console.log(this.user);
         this.unsubscribeAuth = subscribeToAuth(newUser => this.authUser = newUser);
         this.userLoading = false;
 
@@ -70,7 +72,7 @@ export default {
 <template>
       <Loader style="height: calc(100vh - 136px);" v-if="userLoading"></Loader>
         <template v-else>
-            <h1 class="text-3xl font-black mb-4 text-center">Conversación con {{ user.email }}</h1>
+            <h1 class="text-3xl font-black mb-4 text-center">Conversación con {{ authUser.role ? user.email : "Soporte de Shine" }}</h1>
             <h2 class="sr-only">Mensajes</h2>
             <div class="flex flex-col items-start min-h-[400px] max-w-[800px] mx-auto p-4 mb-4 border rounded-lg bg-white shadow-lg">
                 <Loader v-if="messagesLoading"></Loader>
