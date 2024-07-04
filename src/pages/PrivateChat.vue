@@ -17,7 +17,6 @@ export default {
             user: {
                 id: null,
                 email: null,
-                role: null,
             },
             authUser: {
                 id: null,
@@ -35,8 +34,8 @@ export default {
     methods: {
         handleSendMessage() {
             sendPrivateChatMessage({
-                senderId: this.authUser.id,
-                receiverId: this.user.id,
+                senderId: this.authUser.role ? 'KOJ6Xn66d5YaYOeTPczEZlUTOGG3' : this.authUser.id,
+                receiverId: this.authUser.role ? this.user.id : 'KOJ6Xn66d5YaYOeTPczEZlUTOGG3',
                 message: this.newMessage.message,
                 });
                 this.newMessage.message = '';
@@ -48,10 +47,9 @@ export default {
     async mounted() {
         this.userLoading = true;
         this.user = await getUserProfileById(this.$route.params.id);
-        console.log(this.user);
         this.unsubscribeAuth = subscribeToAuth(newUser => this.authUser = newUser);
+        console.log({user: this.user, authUser: this.authUser});
         this.userLoading = false;
-
         this.messagesLoading = true;
         this.unsubscribeMessages = await subscribeToPrivateChat(
             {

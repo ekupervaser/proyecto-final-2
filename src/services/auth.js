@@ -166,7 +166,6 @@ export function subscribeToAuth(observer) {
   auth.onAuthStateChanged(async (user) => {
     if (user) {
       // Usuario autenticado
-
       try {
 
         const userProfile = await getUserProfileById(user.uid);
