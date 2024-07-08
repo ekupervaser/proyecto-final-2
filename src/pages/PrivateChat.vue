@@ -76,7 +76,7 @@ export default {
         <template v-else>
             <h1 class="text-3xl font-black mb-4 text-center">Conversación con {{ authUser.role ? user.email : "Soporte de Shine" }}</h1>
             <h2 class="sr-only">Mensajes</h2>
-            <div class="flex flex-col items-start min-h-[400px] max-w-[800px] mx-auto p-4 mb-4 border rounded-lg bg-white shadow-lg">
+            <div class="flex flex-col items-start min-h-[400px] max-w-[800px] mx-auto p-4 mb-4 border rounded-lg bg-white shadow-lg scrollable-content">
                 <Loader v-if="messagesLoading"></Loader>
                 <template v-else>
                     <div v-for="message in messages"
@@ -110,3 +110,13 @@ export default {
         </template>
     </div>
 </template>
+
+<style scoped>
+.scrollable-content {
+  height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+</style>

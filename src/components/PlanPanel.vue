@@ -84,4 +84,4 @@ export default {
     border: 1px solid #ccc;
     z-index: 1000;
   }
-</style>../services/shine-services.js
+</style>

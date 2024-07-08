@@ -43,7 +43,6 @@
         this.isOpen = !this.isOpen;
       },
       handleSendMessage() {
-        console.log(this.authUser);
         sendPrivateChatMessage({
           senderId: this.authUser.role ? 'KOJ6Xn66d5YaYOeTPczEZlUTOGG3' : this.authUser.id,
           receiverId: this.authUser.role ? this.user.id : 'KOJ6Xn66d5YaYOeTPczEZlUTOGG3',
@@ -86,7 +85,7 @@
     <div>
       <!-- Botón para abrir/cerrar el chat -->
       <button
-        class="fixed bottom-4 right-4 bg-blue-500 text-white p-4 rounded-full shadow-lg w-16 h-16"
+        class="fixed bottom-4 right-4 bg-[#94D1BF] text-white p-4 rounded-full shadow-lg w-16 h-16"
         @click="toggleChat"
       >
       <font-awesome-icon v-if="!isOpen" class="text-3xl" :icon="['fas', 'comment']" />
@@ -97,8 +96,9 @@
       <!-- Ventana de chat -->
       <div v-if="isOpen" class="z-20 fixed bottom-20 right-4 w-80 h-96 bg-white border rounded-lg shadow-lg flex flex-col">
         <!-- Header del chat -->
-        <div class="bg-blue-500 text-white p-4 rounded-t-lg">
-          <h2 class="text-lg font-bold">Soporte de Shine</h2>
+        <div class="bg-[#3B413C] text-white flex items-center p-4 rounded-t-lg">
+          <img src="../../public/logo-mobile.png" alt="" style="width: 32px;">
+          <h2 class="pl-1 text-lg font-bold">Soporte de Shine</h2>
         </div>
   
         <!-- Cuerpo del chat -->
@@ -123,7 +123,7 @@
               v-model="newMessage.message"
               placeholder="Escribe un mensaje..."
             />
-            <button class="text-green-600 hover:shadow-md rounded-lg px-4">
+            <button :disabled="!newMessage.message "class="hover:shadow-md rounded-lg px-4">
                 <font-awesome-icon :icon="['fas', 'paper-plane']" />
             </button>
           </form>

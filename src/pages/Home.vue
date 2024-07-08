@@ -115,8 +115,7 @@ export default {
 
   <section class="bg-[#FFCCBC] py-12">
     <div class="mx-auto text-center px-4">
-      <p class="text-lg mb-8">Elegir <b>SHINE</b> significa optar por un servicio de lavandería que entiende y satisface tus necesidades.</p>
-      <router-link to="/planes" class="bg-white px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Registrate</router-link>
+      <p class="text-lg">Elegir <b>SHINE</b> significa optar por un servicio de lavandería que entiende y satisface tus necesidades.</p>
     </div>
   </section>
 </template>

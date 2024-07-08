@@ -125,8 +125,8 @@ function useProfileEdit(user) {
 </script>
 
 <template>
-    <div class="min-h-full p-10">
-        <h1 class="text-3xl font-bold mb-6 text-center">Mi perfil</h1>
+    <div class="min-h-full">
+        <h1 class="text-3xl font-black mb-6 text-center">Mi perfil</h1>
             <div class="flex flex-col items-center bg-gray-100 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
                 <div class="flex w-full justify-center items-start gap-4" v-if="!editing && !editingPhoto">
                     <div class="flex flex-col items-center p-6 mb-4 bg-white shadow rounded-lg">
@@ -225,9 +225,3 @@ function useProfileEdit(user) {
             </div>
     </div>
 </template>
-
-<style>
-    .min-h-full {
-        min-height: calc(100vh - 136px);
-    }
-</style>

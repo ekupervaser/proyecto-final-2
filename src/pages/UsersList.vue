@@ -29,7 +29,7 @@ export default {
 </script>
 
 <template>
-  <div class="min-h-full py-6 flex content-center justify-center">
+  <div class="min-h-full flex content-center justify-center">
   <Loader v-if="usersLoading"></Loader>
     <template v-else>
       <div class="max-w-5xl mx-auto p-6rounded-lg">
@@ -59,9 +59,3 @@ export default {
     </template>
   </div>
 </template>
-
-<style>
-    .min-h-full {
-        min-height: calc(100vh - 136px);
-    }
-</style>
