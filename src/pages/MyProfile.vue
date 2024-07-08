@@ -139,17 +139,17 @@ function useProfileEdit(user) {
                             {{ user.photoURL ? 'Actualizar' : 'Cargar' }}
                         </button>
                         <div class="mt-6">
-                            <p class="font-bold">Email</p>
-                            <p class="mb-2">{{ user.email }}</p>
                             <p class="font-bold">Nombre</p>
                             <p class="mb-2">{{ user.displayName || 'No especificado' }}</p>
+                            <p class="font-bold">Email</p>
+                            <p class="mb-2">{{ user.email }}</p>
                           <!--   <p class="font-bold">Rol</p>
                             <p>{{ user.role || 'Usuario estándar' }}</p> -->
                             <BaseButton @click="handleEditShow" class="mt-4">Editar</BaseButton>
                         </div>
                     </div>
                     <div class="w-full">
-                    <div class="w-full flex flex-col items-center p-6 mb-4 bg-white shadow rounded-lg">
+                    <div class="w-full flex flex-col p-6 mb-4 bg-white shadow rounded-lg">
                         <h2 class="mb-3 text-xl font-bold">Mi plan</h2>
                         <template v-if="!user.coursesPurchased || user.coursesPurchased.length === 0">
                             <p>Actualmente no tenés ninguna suscripción activa.</p>
@@ -162,7 +162,7 @@ function useProfileEdit(user) {
                             </ul>
                         </template>
                     </div>
-                    <div class="w-full flex flex-col items-center p-6 mb-4 bg-white shadow rounded-lg">
+                    <div class="w-full flex flex-col p-6 mb-4 bg-white shadow rounded-lg">
                         <h2 class="mb-3 text-xl font-bold">Mis pedidos</h2>
                         <template v-if="!user.coursesPurchased || user.coursesPurchased.length === 0">
                             <p>Actualmente no tenés ninguna suscripción activa.</p>

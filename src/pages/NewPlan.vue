@@ -88,9 +88,8 @@ export default {
 </script>
 
 <template>
-    <div class="max-w-screen-sm flex flex-col justify-center m-auto">
+    <div class="min-h-full max-w-screen-sm flex flex-col justify-center m-auto">
     <h1 class="text-3xl font-black mb-4 text-center">Cargar nuevo plan</h1>
-    <p class="font-black mb-4">Agrega el ítem a continuación</p>
     <form action="#"
     @submit.prevent="saveCourse"
     >
@@ -116,16 +115,23 @@ export default {
                 <p class="text-red-500">{{ validationErrors.price }}</p>
             </div>
             <div>
-        <BaseLabel modelFor="benefits">Beneficios</BaseLabel>
-        <div v-for="(benefit, index) in newCourse.benefits" :key="index">
-          <BaseInput v-model="benefit.text" />
-          <button type="button" @click="removeBenefit(index)">Eliminar</button>
-        </div>
-        <button type="button" @click="addBenefit">Agregar Beneficio</button>
-        <p class="text-red-500">{{ validationErrors.benefits }}</p>
-      </div>
-
-            <BaseButton type="submit">Cargar plan</BaseButton>
-        </form>
-    </div>
+                <div class="flex flex-col">
+                    <BaseLabel modelFor="benefits">Beneficios</BaseLabel>
+                    <div v-for="(benefit, index) in newCourse.benefits" :key="index">
+                    <BaseInput class="mt-2 mb-0"v-model="benefit.text" />
+                    <button type="button" @click="removeBenefit(index)">Eliminar</button>
+                    </div>
+                        <button type="button" @click="addBenefit" class="text-left">Agregar Beneficio</button>
+                        <p class="text-red-500">{{ validationErrors.benefits }}</p>
+                    </div>
+                    </div>
+                    <BaseButton type="submit">Cargar plan</BaseButton>
+                    </form>
+                </div>
 </template>
+
+<style>
+    .min-h-full {
+        min-height: calc(100vh - 136px);
+    }
+</style>

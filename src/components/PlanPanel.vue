@@ -39,7 +39,7 @@ export default {
 </script>
 
 <template>
-  <div class="container flex flex-col" v-if="!isLoading">
+  <div class="flex flex-col" v-if="!isLoading">
     <div class="container mx-auto">
       <div class="overflow-x-auto">
         <table class="min-w-full">
