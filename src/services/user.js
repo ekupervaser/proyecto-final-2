@@ -31,7 +31,7 @@ export async function getUsers() {
  * @returns {Promise<{id: string, email: string, role: string|null, displayName: string|null}>}
  */
 
-export async function getUserProfileById(id) {
+export async function getAuthUserProfileById(id) {
     const refUser = doc(db, `users/${id}`);
     const docSnapshot = await getDoc(refUser);
 

@@ -1,6 +1,6 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { subscribeToAuth } from '../services/auth';
-import { getUserProfileById } from '../services/user';
+import { getAuthUserProfileById } from '../services/user';
 
 export function useAuth() {
     const userLoading = ref(true);
@@ -17,7 +17,7 @@ export function useAuth() {
         unsubscribeAuth = subscribeToAuth(async (newUser) => {
             if (newUser) {
                 userLoading.value = true;
-                const userProfile = await getUserProfileById(newUser.id);
+                const userProfile = await getAuthUserProfileById(newUser.id);
                 user.value = { ...userProfile };
                 userLoading.value = false;
             } else {

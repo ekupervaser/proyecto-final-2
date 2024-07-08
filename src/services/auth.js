@@ -1,6 +1,6 @@
 import { auth } from "./firebase.js";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-import { getUserProfileById, createUserProfile, updateUserProfile } from './user.js';
+import { getAuthUserProfileById, createUserProfile, updateUserProfile } from './user.js';
 import { getFileURL, uploadFile } from "./file-storage.js";
 import { getCourseById } from "./shine-services.js";
 
@@ -30,7 +30,7 @@ onAuthStateChanged(auth, async user => {
       coursesPurchased: user.coursesPurchased,
     });
 
-    const fullData = await getUserProfileById(user.uid);
+    const fullData = await getAuthUserProfileById(user.uid);
     setUserData({
       role: fullData.role,
     })
@@ -168,7 +168,7 @@ export function subscribeToAuth(observer) {
       // Usuario autenticado
       try {
 
-        const userProfile = await getUserProfileById(user.uid);
+        const userProfile = await getAuthUserProfileById(user.uid);
         observer(userProfile);
 
         if (userProfile && userProfile.coursesPurchased) {
@@ -178,8 +178,7 @@ export function subscribeToAuth(observer) {
 
       } catch (error) {
 
-      }
-       
+      }   
 
     } else {
         // Usuario no autenticado

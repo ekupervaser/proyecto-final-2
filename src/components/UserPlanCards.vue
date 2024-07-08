@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { useAuth } from '../composition/useAuth';
 import { importCursos, purchaseCourseFirestore } from '../services/shine-services';
-import { getUserProfileById, loadUserData } from '../services/user';
+import { getAuthUserProfileById, loadUserData } from '../services/user';
 import Loader from './Loader.vue';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -23,7 +23,7 @@ onMounted(async () => {
 
   importCursos(async (data) => {
     const userCourses = user.value?.courses || [];
-    const userProfile = await getUserProfileById(user.value.id);
+    const userProfile = await getAuthUserProfileById(user.value.id);
     const userPurchasedCourses = userProfile.coursesPurchased || [];
 
     courses.value = data.map(course => {
@@ -43,7 +43,7 @@ onMounted(async () => {
 
 async function purchaseCourse(userId, courseId) {
 
-  const userProfile = await getUserProfileById(userId);
+  const userProfile = await getAuthUserProfileById(userId);
 
   if (!userProfile.coursesPurchased || !userProfile.coursesPurchased.includes(courseId)) {
 

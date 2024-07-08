@@ -1,5 +1,5 @@
 <script>
-import { getUserProfileById } from '../services/user';
+import { getAuthUserProfileById } from '../services/user';
 import { getCoursesPurchasedByUser } from '../services/shine-services';
 import { useAuth } from '../composition/useAuth'
 import Loader from '../components/Loader.vue';
@@ -25,7 +25,7 @@ export default {
     async loadUserProfile() {
       try {
         const userId = this.$route.params.id;
-        const userProfile = await getUserProfileById(userId);
+        const userProfile = await getAuthUserProfileById(userId);
         this.user = { ...userProfile };
       } catch (error) {
       }

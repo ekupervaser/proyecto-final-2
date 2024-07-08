@@ -4,7 +4,7 @@ import BaseTextarea from '../components/BaseTextarea.vue';
 import Loader from '../components/Loader.vue';
 import { sendPrivateChatMessage, subscribeToPrivateChat } from '../services/private-chat';
 import { subscribeToAuth } from '../services/auth';
-import { getUserProfileById } from '../services/user';
+import { getAuthUserProfileById } from '../services/user';
 import { dateToString } from '../helpers/date'
 import { auth } from '../services/firebase';
 
@@ -13,6 +13,7 @@ export default {
     components: { Loader, BaseTextarea, BaseButton },
     data() {
         return {
+            isOpen: false,
             userLoading: true,
             user: {
                 id: null,
@@ -32,6 +33,9 @@ export default {
         };
     },
     methods: {
+        toggleChat() {
+            this.isOpen = !this.isOpen;
+        },
         handleSendMessage() {
             sendPrivateChatMessage({
                 senderId: this.authUser.role ? 'KOJ6Xn66d5YaYOeTPczEZlUTOGG3' : this.authUser.id,
@@ -46,7 +50,7 @@ export default {
     },
     async mounted() {
         this.userLoading = true;
-        this.user = await getUserProfileById(this.$route.params.id);
+        this.user = await getAuthUserProfileById(this.$route.params.id);
         this.unsubscribeAuth = subscribeToAuth(newUser => this.authUser = newUser);
         this.userLoading = false;
         this.messagesLoading = true;

@@ -2,11 +2,12 @@
 import { logout, subscribeToAuth } from './services/auth'
 import Home from './pages/Home.vue';
 import Footer from './components/Footer.vue';
-import { getUserProfileById } from './services/user';
+import { getAuthUserProfileById } from './services/user';
+import ChatWidget from './components/ChatWidget.vue';
 
 export default {
     name: "App",
-    components: { Home, Footer },
+    components: { Home, Footer, ChatWidget },
     data() {
         return {
             user: {
@@ -34,7 +35,7 @@ export default {
     mounted() {
         subscribeToAuth(async user => {
             this.user = {...user};
-            this.userFirestore = await getUserProfileById(this.user.id);
+            this.userFirestore = await getAuthUserProfileById(this.user.id);
         });
     }
 };
@@ -100,5 +101,6 @@ export default {
         </div>
     </header>
     <router-view></router-view>
+    <ChatWidget v-if="user.id && user.id != 'KOJ6Xn66d5YaYOeTPczEZlUTOGG3'" :user="user"/>
     <Footer></Footer>
 </template>

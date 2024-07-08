@@ -4,7 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTruck, faTshirt, faLeaf, faTags, faPhoneAlt, faCheck } from '@fortawesome/free-solid-svg-icons'
 import GeneralPlanCards from '../components/GeneralPlanCards.vue'
 
-library.add(faTruck, faTshirt, faLeaf, faTags, faPhoneAlt, faCheck)
+library.add(faTruck, faTshirt, faLeaf, faTags, faPhoneAlt, faCheck);
 
 export default {
   name: 'Home',
