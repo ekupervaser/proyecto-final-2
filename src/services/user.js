@@ -42,7 +42,7 @@ export async function getAuthUserProfileById(id) {
         role: docSnapshot.data().role,
         displayName: docSnapshot.data().displayName,
         photoURL: docSnapshot.data().photoURL,
-        coursesPurchased: docSnapshot.data().coursesPurchased,
+        plansPurchased: docSnapshot.data().plansPurchased,
     }
 }
 
@@ -91,7 +91,7 @@ export async function loadUserData(user) {
   
       if (userDocSnapshot.exists()) {
         const userData = userDocSnapshot.data();
-        user.value.courses = userData.courses || [];
+        user.value.plans = userData.plans || [];
       }
     }
   }

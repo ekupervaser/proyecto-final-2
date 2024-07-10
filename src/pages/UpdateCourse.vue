@@ -1,12 +1,12 @@
 <script>
-import { updateCourse } from '../services/panel';
+import { updateplan } from '../services/panel';
 import BaseButton from '../components/BaseButton.vue';
 import BaseInput from '../components/BaseInput.vue';
 import BaseLabel from '../components/BaseLabel.vue';
 import BaseTextarea from '../components/BaseTextarea.vue';
 
 export default {
-    name: 'updateCourse',
+    name: 'updateplan',
 }
 </script>
 
@@ -17,25 +17,25 @@ export default {
     <p class="font-black mb-4">Reemplaza los datos a modificar</p>
 
     <form action="#"
-    @submit.prevent="saveCourse"
+    @submit.prevent="saveplan"
     >
             <div>
                 <BaseLabel for="name">Nombre</BaseLabel>
                 <BaseInput 
                 id="name"
-                v-model="newCourse.name"/>
+                v-model="newplan.name"/>
             </div>
             <div>
                 <BaseLabel for="description">Descripción</BaseLabel>
                 <BaseTextarea 
                 id="description"
-                v-model="newCourse.description"/>
+                v-model="newplan.description"/>
             </div>
             <div>
                 <BaseLabel for="price">Precio</BaseLabel>
                 <BaseInput 
                 id="price"
-                v-model="newCourse.price"/>
+                v-model="newplan.price"/>
             </div>
             <BaseButton type="submit">Cargar curso</BaseButton>
         </form>

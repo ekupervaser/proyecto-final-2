@@ -151,26 +151,26 @@ function useProfileEdit(user) {
                     <div class="w-full">
                     <div class="w-full flex flex-col p-6 mb-4 bg-white shadow rounded-lg">
                         <h2 class="mb-3 text-xl font-bold">Mi plan</h2>
-                        <template v-if="!user.coursesPurchased || user.coursesPurchased.length === 0">
+                        <template v-if="!user.plansPurchased || user.plansPurchased.length === 0">
                             <p>Actualmente no tenés ninguna suscripción activa.</p>
                         </template>
                         <template v-else>
                             <ul class="list-disc pl-5">
-                                <li v-for="course in user.coursesPurchased" :key="course.id">
-                                    {{ formatFirebaseDate(course.purchaseDate) }} - {{ course.name }}
+                                <li v-for="plan in user.plansPurchased" :key="plan.id">
+                                    {{ formatFirebaseDate(plan.purchaseDate) }} - {{ plan.name }}
                                 </li>
                             </ul>
                         </template>
                     </div>
                     <div class="w-full flex flex-col p-6 mb-4 bg-white shadow rounded-lg">
                         <h2 class="mb-3 text-xl font-bold">Mis pedidos</h2>
-                        <template v-if="!user.coursesPurchased || user.coursesPurchased.length === 0">
+                        <template v-if="!user.plansPurchased || user.plansPurchased.length === 0">
                             <p>Actualmente no tenés ninguna suscripción activa.</p>
                         </template>
                         <template v-else>
                             <ul class="list-disc pl-5">
-                                <li v-for="course in user.coursesPurchased" :key="course.id">
-                                    {{ formatFirebaseDate(course.purchaseDate) }} - {{ course.name }}
+                                <li v-for="plan in user.plansPurchased" :key="plan.id">
+                                    {{ formatFirebaseDate(plan.purchaseDate) }} - {{ plan.name }}
                                 </li>
                             </ul>
                         </template>

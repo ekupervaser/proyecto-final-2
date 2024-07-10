@@ -3,12 +3,12 @@ import BaseButton from '../components/BaseButton.vue';
 import PlanPanel from '../components/PlanPanel.vue';
 
 export default {
-    name: 'CourseAdmin',
+    name: 'planAdmin',
     components: { PlanPanel, BaseButton },
     data() {
         return {
             isLoading: true, 
-            courses: [],
+            plans: [],
        }
     },
 }

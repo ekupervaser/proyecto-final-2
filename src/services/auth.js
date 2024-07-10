@@ -10,7 +10,7 @@ let userData = {
   role: null,
   displayName: null,
   photoURL: null,
-  coursesPurchased: [],
+  plansPurchased: [],
 }
 
 let observers = [];
@@ -171,7 +171,7 @@ export function subscribeToAuth(observer) {
         const userProfile = await getAuthUserProfileById(user.uid);
         observer(userProfile);
 
-        if (userProfile && userProfile.coursesPurchased) {
+        if (userProfile && userProfile.plansPurchased) {
           const plansPurchased = await Promise.all(userProfile.plansPurchased.map(planId => getPlanById(planId)));
           observer({ ...userProfile, plansPurchased });
         }
