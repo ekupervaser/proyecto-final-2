@@ -1,17 +1,17 @@
   import {db} from './firebase.js';
   import {doc, getDoc, updateDoc, arrayUnion, collection, onSnapshot, query} from "firebase/firestore";
 
-  const refCursos = collection(db, 'cursos');
+  const refPlans = collection(db, 'plans');
 
   /**
-   * Función para obtener el listado de cursos
+   * Función para obtener el listado de planes
    * 
    * @param {() => {}} callback 
    * @returns {import('firebase/auth').Unsubscribe}
    */
-  export function importCursos(callback) {
+  export function importPlans(callback) {
 
-      const q = query(refCursos);
+      const q = query(refPlans);
 
       return onSnapshot(q, snapshot => {
           const data = snapshot.docs.map(doc => {
@@ -29,42 +29,42 @@
   }
 
   /**
-   * Función para obtener un curso por su ID
+   * Función para obtener un plan por su ID
    * 
-   * @param {string} courseId 
+   * @param {string} planId 
    * @returns {Promise<{ id: string, name: string, description: string, price: string } | null>}
    */
-  export async function getCourseById(courseId) {
+  export async function getPlanById(planId) {
 
-      const cursoRef = doc(db, 'cursos', courseId);
+      const planRef = doc(db, 'plans', planId);
 
-      const cursoSnapshot = await getDoc(cursoRef);
+      const planSnapshot = await getDoc(planRef);
     
-      if (cursoSnapshot.exists()) {
+      if (planSnapshot.exists()) {
 
         return {
-          id: cursoSnapshot.id,
-          name: cursoSnapshot.data().name,
-          description: cursoSnapshot.data().description,
-          price: cursoSnapshot.data().price
+          id: planSnapshot.id,
+          name: planSnapshot.data().name,
+          description: planSnapshot.data().description,
+          price: planSnapshot.data().price
         };
       } else {
         return null;
       }
     }
 
-    //Función para comprar un curso y guardarlo en el usuario en Firestore
-    export async function purchaseCourseFirestore(userId, courseId) {
+    //Función para comprar un plan y guardarlo en el usuario en Firestore
+    export async function purchasePlanFirestore(userId, planId) {
       const userRef = doc(db, `users/${userId}`);
-      const course = await getCourseById(courseId);
+      const plan = await getPlanById(planId);
       const fechaActual = new Date();
     
       await updateDoc(userRef, {
-        coursesPurchased: arrayUnion({
-          courseId,
-          name: course.name,
-          description: course.description,
-          price: course.price,
+        plansPurchased: arrayUnion({
+          planId,
+          name: plan.name,
+          description: plan.description,
+          price: plan.price,
           purchaseDate: fechaActual,
         }),
       });
@@ -72,21 +72,21 @@
 
 
 /**
- * Función para obtener los cursos comprados por un usuario
+ * Función para obtener los planes comprados por un usuario
  * 
  * @param {string} userId
  * @returns {Promise<Array>} 
  */
-export async function getCoursesPurchasedByUser(userId) {
+export async function getPlansPurchasedByUser(userId) {
   try {
     const userRef = doc(db, `users/${userId}`);
     const userSnapshot = await getDoc(userRef);
 
     if (userSnapshot.exists()) {
       const userData = userSnapshot.data();
-      const coursesPurchased = userData.coursesPurchased || [];
+      const plansPurchased = userData.plansPurchased || [];
     
-      return coursesPurchased;
+      return plansPurchased;
     } else {
       return [];
     }

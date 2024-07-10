@@ -1,6 +1,6 @@
 <script>
 import { getAuthUserProfileById } from '../services/user';
-import { getCoursesPurchasedByUser } from '../services/shine-services';
+import { getPlansPurchasedByUser } from '../services/shine-services';
 import { useAuth } from '../composition/useAuth'
 import Loader from '../components/Loader.vue';
 
@@ -16,23 +16,23 @@ export default {
         displayName: null,
         role: null,
         photoURL: null,
-        coursesPurchased: [],
+        plansPurchased: [],
       },
-      courseData: [],
+      planData: [],
     };
   },
   methods: {
     async loadUserProfile() {
       try {
-        const userId = this.$route.params.id;
+        const planId = this.$route.params.id;
         const userProfile = await getAuthUserProfileById(userId);
         this.user = { ...userProfile };
       } catch (error) {
       }
     },
-    async loadCourseData() {
+    async loadPlanData() {
       try {
-          this.courseData = await getCoursesPurchasedByUser(this.user.id);
+          this.planData = await getPlansPurchasedByUser(this.user.id);
       } catch (error) {
 
       } 
@@ -42,7 +42,7 @@ export default {
   async mounted() {
     this.userLoading = true;
     await this.loadUserProfile();
-    await this.loadCourseData();
+    await this.loadPlanData();
     this.userLoading = false;
   },
 };
@@ -56,11 +56,11 @@ export default {
     </template>
     <template v-else>
       <ul class="text-center mt-5">
-        <li v-for="course in courseData" :key="course.id" class="text-xl">
-          {{ course.name }}
+        <li v-for="plan in planData" :key="plan.id" class="text-xl">
+          {{ plan.name }}
         </li>
       </ul>
-      <div v-if="courseData.length === 0 && !userLoading" class="text-center mt-4">
+      <div v-if="planData.length === 0 && !userLoading" class="text-center mt-4">
         {{ user.email }} no tiene ningún plan comprado.
       </div>
     </template>

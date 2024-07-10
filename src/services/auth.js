@@ -2,7 +2,7 @@ import { auth } from "./firebase.js";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { getAuthUserProfileById, createUserProfile, updateUserProfile } from './user.js';
 import { getFileURL, uploadFile } from "./file-storage.js";
-import { getCourseById } from "./shine-services.js";
+import { getPlanById } from "./shine-services.js";
 
 let userData = {
   id: null,
@@ -27,7 +27,7 @@ onAuthStateChanged(auth, async user => {
       displayName: user.displayName,
       role: user.role,
       photoURL: user.photoURL,
-      coursesPurchased: user.coursesPurchased,
+      plansPurchased: user.plansPurchased,
     });
 
     const fullData = await getAuthUserProfileById(user.uid);
@@ -82,7 +82,7 @@ export function login({email, password}) {
             displayName: userCredentials.user.displayName,
             role: userCredentials.role,
             photoURL: userCredentials.user.photoURL,
-            coursesPurchased: userCredentials.user.coursesPurchased,
+            plansPurchased: userCredentials.user.plansPurchased,
         };
           return userData;
         })
@@ -172,8 +172,8 @@ export function subscribeToAuth(observer) {
         observer(userProfile);
 
         if (userProfile && userProfile.coursesPurchased) {
-          const coursesPurchased = await Promise.all(userProfile.coursesPurchased.map(courseId => getCourseById(courseId)));
-          observer({ ...userProfile, coursesPurchased });
+          const plansPurchased = await Promise.all(userProfile.plansPurchased.map(planId => getPlanById(planId)));
+          observer({ ...userProfile, plansPurchased });
         }
 
       } catch (error) {
@@ -221,7 +221,7 @@ function clearUserData () {
     role: null,
     displayName: null,
     photoURL: null,
-    coursesPurchased: [],
+    plansPurchased: [],
 
 });
 localStorage.removeItem('user');

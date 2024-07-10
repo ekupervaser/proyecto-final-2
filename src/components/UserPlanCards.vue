@@ -1,10 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useAuth } from '../composition/useAuth';
-import { importCursos, purchaseCourseFirestore } from '../services/shine-services';
+import { importPlans, purchasePlanFirestore } from '../services/shine-services';
 import { getAuthUserProfileById, loadUserData } from '../services/user';
 import Loader from './Loader.vue';
-
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -14,24 +13,24 @@ library.add(faCheck);
 const { user } = useAuth();
 
 const isLoading = ref(true);
-const courses = ref([]);
+const plans = ref([]);
 
 onMounted(async () => {
   isLoading.value = true;
 
   await loadUserData(user);
 
-  importCursos(async (data) => {
-    const userCourses = user.value?.courses || [];
+  importPlans(async (data) => {
+    const userPlans = user.value?.plans || [];
     const userProfile = await getAuthUserProfileById(user.value.id);
-    const userPurchasedCourses = userProfile.coursesPurchased || [];
+    const userPurchasedPlans = userProfile.plansPurchased || [];
 
-    courses.value = data.map(course => {
-      const isPurchased = userCourses.some(userCourseId => userCourseId === course.id) ||
-        userPurchasedCourses.some(purchasedCourse => purchasedCourse.courseId === course.id);
+    plans.value = data.map(plan => {
+      const isPurchased = userPlans.some(userPlanId => userPlanId === plan.id) ||
+        userPurchasedPlans.some(purchasedPlan => purchasedPlan.planId === plan.id);
 
       return {
-        ...course,
+        ...plan,
         isPurchased,
         isPurchasing: false,
       };
@@ -41,32 +40,32 @@ onMounted(async () => {
 });
 
 
-async function purchaseCourse(userId, courseId) {
+async function purchasePlan(userId, planId) {
 
   const userProfile = await getAuthUserProfileById(userId);
 
-  if (!userProfile.coursesPurchased || !userProfile.coursesPurchased.includes(courseId)) {
+  if (!userProfile.plansPurchased || !userProfile.plansPurchased.includes(planId)) {
 
-    courses.value = courses.value.map(c => ({
-      ...c,
-      isPurchasing: c.id === courseId,
+    plans.value = plans.value.map(p => ({
+      ...p,
+      isPurchasing: p.id === planId,
     }));
 
     // Obtener la fecha y hora actuales
     const fechaActual = new Date();
 
-    // Actualizar el perfil del usuario con el curso comprado y la fecha de compra
-    await purchaseCourseFirestore(userId, courseId);
+    // Actualizar el perfil del usuario con el plan comprado y la fecha de compra
+    await purchasePlanFirestore(userId, planId);
 
-    courses.value = courses.value.map(course => {
-      if (course.id === courseId) {
-        return { ...course, isPurchased: true, isPurchasing: false, };
+    plans.value = plans.value.map(plan => {
+      if (plan.id === planId) {
+        return { ...plan, isPurchased: true, isPurchasing: false, };
       }
-      return course;
+      return plan;
     });
 
-    courses.value = courses.value.map(c => ({
-      ...c,
+    plans.value = plans.value.map(p => ({
+      ...p,
       isPurchasing: false,
     }));
   }
@@ -75,29 +74,29 @@ async function purchaseCourse(userId, courseId) {
 
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    <div v-if="!isLoading" v-for="course in courses" :key="course.id">
+    <div v-if="!isLoading" v-for="plan in plans" :key="plan.id">
       <div class="bg-white p-6 rounded-md shadow-md mb-4 flex flex-col justify-between h-full bg-[#ebc5eb86]">
         <div>
-          <h2 class="text-xl font-bold mb-2">{{ course.name }}</h2>
-          <p class="text-gray-600">{{ course.description }}</p>
+          <h2 class="text-xl font-bold mb-2">{{ plan.name }}</h2>
+          <p class="text-gray-600">{{ plan.description }}</p>
           <ul class="mt-2">
-            <li class="flex" v-for="(benefit, index) in course.benefits" :key="index">
+            <li class="flex" v-for="(benefit, index) in plan.benefits" :key="index">
                 <font-awesome-icon :icon="['fas', 'check']" class="mt-1 mr-1 text-[#94D1BF]"/> 
                 <p class="text-gray-600">{{ benefit.text }}</p>
             </li>
         </ul>
         </div>
         <div class="mt-4">
-          <p v-if="!course.isPurchased" class="bg-slate-200 px-2 rounded font-bold w-fit">${{ course.price }}</p>
-          <button v-if="!course.isPurchased" @click="purchaseCourse(user.id, course.id)"
+          <p v-if="!plan.isPurchased" class="bg-slate-200 px-2 rounded font-bold w-fit">${{ plan.price }}</p>
+          <button v-if="!plan.isPurchased" @click="purchaseCourse(user.id, plan.id)"
             class="mt-2 bg-[#94D1BF] text-white px-4 py-2 w-full rounded cursor-pointer">
-            <span v-if="course.isPurchasing">
+            <span v-if="plan.isPurchasing">
               <Loader size="small"></Loader>
             </span>
             <span v-else>Comprar</span>
           </button>
-          <button v-else :disabled="course.isPurchased"
-            :class="{ 'bg-gray-300': course.isPurchased, 'cursor-de fault': course.isPurchased }"
+          <button v-else :disabled="plan.isPurchased"
+            :class="{ 'bg-gray-300': plan.isPurchased, 'cursor-de fault': plan.isPurchased }"
             class="mt-2 w-full text-white px-4 py-2 rounded cursor-pointer">
             Comprado
           </button>

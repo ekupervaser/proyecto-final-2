@@ -1,35 +1,35 @@
 <script>
-import { importCursos } from '../services/shine-services.js'
-import { deleteCourse } from '../services/panel.js'
+import { importPlans } from '../services/shine-services.js'
+import { deletePlan } from '../services/panel.js'
 import Loader from './Loader.vue';
 
 export default {
-    name: "CoursePanel",
+    name: "PlanPanel",
     data() {
         return {
             isLoading: true,
-            courses: [],
+            plans: [],
             showingConfirmation: false,
-            courseIdToDelete: null,
+            planIdToDelete: null,
         };
     },
     methods: {
-    eliminarCurso() {
-      deleteCourse(this.courseIdToDelete)
+    eliminarPlan() {
+      deletePlan(this.planIdToDelete)
         .then(() => {
         })
         .catch((error) => {
         });
     },
-    showConfirmation(courseId) {
-      this.courseIdToDelete = courseId;
+    showConfirmation(planId) {
+      this.planIdToDelete = planId;
       this.showingConfirmation = true;
     }
   },
     mounted() {
         this.isLoading = true;
-        importCursos(courses => {
-            this.courses = courses;
+        importPlans(plans => {
+            this.plans = plans;
             this.isLoading = false;
             this.showingConfirmation = false;
         });
@@ -52,12 +52,12 @@ export default {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="course in courses">
-              <td class="border px-6 py-4">{{course.name}}</td>
-              <td class="border px-6 py-4">{{course.description}}</td>
-              <td class="border px-6 py-4">${{course.price}}</td>
+            <tr v-for="plan in plans">
+              <td class="border px-6 py-4">{{plan.name}}</td>
+              <td class="border px-6 py-4">{{plan.description}}</td>
+              <td class="border px-6 py-4">${{plan.price}}</td>
               <td class="border px-6 py-4">
-                <button @click="showConfirmation(course.id)" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Eliminar</button>
+                <button @click="showConfirmation(plan.id)" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Eliminar</button>
               </td>
             </tr>
           </tbody>
@@ -65,7 +65,7 @@ export default {
         <div v-if="showingConfirmation" class="modal flex flex-col">
           <p>Estás a punto de eliminar el curso. ¿Deseas continuar con la acción?</p>
           <button class="mx-auto mt-3 py-1 w-40 bg-red-600 rounded text-white " 
-          @click="eliminarCurso(courseIdToDelete)">Sí, eliminarlo</button>
+          @click="eliminarPlan(planIdToDelete)">Sí, eliminarlo</button>
         </div>
       </div>
     </div>

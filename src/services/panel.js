@@ -1,7 +1,7 @@
 import {db} from './firebase.js';
 import {addDoc, collection, onSnapshot, query, doc, deleteDoc} from "firebase/firestore";
 
-const refCursos = collection(db, 'cursos');
+const refPlans = collection(db, 'plans');
 
 /**
  * Función para crear un nuevo curso
@@ -9,9 +9,9 @@ const refCursos = collection(db, 'cursos');
  * @param {Object} data 
  * @returns {Promise<DocumentReference>}
  */
-export function SaveNewCourse(data) {
+export function SaveNewPlan(data) {
 
-    return addDoc(refCursos, {
+    return addDoc(refPlans, {
         ...data,
     });
 }
@@ -22,9 +22,9 @@ export function SaveNewCourse(data) {
  * @param {() => {}} callback 
  * @returns {import('firebase/auth').Unsubscribe}
  */
-export function getCourses(callback) {
+export function getPlans(callback) {
 
-    const q = query(refCursos);
+    const q = query(refPlans);
 
     return onSnapshot(q, snapshot => {
         const data = snapshot.docs.map(doc => {
@@ -43,13 +43,13 @@ export function getCourses(callback) {
 /**
  * Función para eliminar un curso
  * 
- * @param {courseId: string} data 
+ * @param {planId: string} data 
  */
 
-export async function deleteCourse(courseId) {
-    const courseRef = doc(db, "cursos", courseId); 
+export async function deletePlan(planId) {
+    const planRef = doc(db, "plans", planId); 
     try {
-      await deleteDoc(courseRef);
+      await deleteDoc(planRef);
     } catch (error) {
     }
   }
