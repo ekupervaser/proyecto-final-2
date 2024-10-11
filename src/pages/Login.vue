@@ -5,12 +5,23 @@ import BaseInput from '../components/BaseInput.vue';
 import { login, isAuthenticated } from '../services/auth';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faEyeSlash, faEye);
 
 const router = useRouter();
 
 const loginLoading = ref(false);
 
 let loginErrorMessage = ref(null);
+
+const isPasswordVisible = ref(false);
+
+const togglePasswordVisibility = () => {
+  isPasswordVisible.value = !isPasswordVisible.value;
+};
 
 const form = ref({
     email: '',
@@ -52,19 +63,26 @@ const doLogin = async () => {
                 v-model="form.email"
                 />
             </div>
-            <div>
+            <div class="relative">
                 <BaseLabel modelFor="password">Contraseña</BaseLabel>
                 <BaseInput 
                 :disabled="loginLoading"
-                type="password" 
+                :type="isPasswordVisible ? 'text' : 'password'"
                 id="password"
                 v-model="form.password"
+                class="relative"
                 />
+                <button
+                    type="button"
+                    class="absolute mt-3 inset-y-0 right-0 flex items-center pr-3 text-gray-600"
+                    @click="togglePasswordVisibility"                >
+                    <FontAwesomeIcon v-if="isPasswordVisible" :icon="['fas', 'fa-eye-slash']" />
+                    <FontAwesomeIcon v-else :icon="['fas', 'fa-eye']" />
+                </button>
             </div>
             <BaseButton :loading="loginLoading">Iniciar sesión</BaseButton>
         </form>
             <div v-if="loginErrorMessage" class="text-red-500 mt-2">{{ loginErrorMessage }}</div>
             <p>¿No tenés usuario? <router-link to="/registro" class="font-bold hover:bg-gray-100 transition">Registrate</router-link></p>
-
      </div>
 </template>
