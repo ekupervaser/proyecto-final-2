@@ -10,13 +10,13 @@ export default {
   name: 'Home',
   components: {
     FontAwesomeIcon, 
-    GeneralPlanCards
+    GeneralPlanCards,
   }
 }
 </script>
 
 <template>
-  <div class="relative overflow-hidden" style="height: calc(100vh - 160px)">
+  <div class="relative overflow-hidden" style="height: calc(100vh - 160px); margin-top: 64px">
     <video class="absolute top-0 left-0 w-full h-auto object-cover z-1" style="height: calc(100vh - 160px)" src="/video-home.mp4" autoplay muted loop></video>
     <div class="absolute inset-0 flex flex-col justify-center items-center text-center bg-black bg-opacity-50 p-4">
       <header class="py-6 max-w-4xl mx-auto">
@@ -109,7 +109,7 @@ export default {
   </section>
 
   <section class="container py-8">
-    <h2 class="text-3xl font-bold mb-4 text-center">¡Probá la Diferencia Hoy Mismo!</h2>
+    <h2 class="text-3xl font-bold mb-4 text-center">¡Probá nuestros!</h2>
     <GeneralPlanCards></GeneralPlanCards>
   </section>
 

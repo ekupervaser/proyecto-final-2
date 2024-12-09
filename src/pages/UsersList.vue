@@ -29,7 +29,7 @@ export default {
 </script>
 
 <template>
-  <div class="min-h-full flex content-center justify-center">
+  <div class="min-h-full flex content-center justify-center" style="margin-top: 64px;">
   <Loader v-if="usersLoading"></Loader>
     <template v-else>
       <div class="max-w-5xl mx-auto p-6rounded-lg">

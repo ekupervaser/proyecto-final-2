@@ -16,7 +16,7 @@ defineProps({
         'bg-[#94D1BF]': !loading,
         'hover:bg-[#A8D9CD]': !loading,
         'active:bg-[#7BB8A6]': !loading,
-        'disabled:bg-[#C1E5DF]': loading
+        'disabled:bg-[#C1E5DF]': loading,
       }"
       type="submit" 
       :disabled="loading"

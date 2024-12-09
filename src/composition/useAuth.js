@@ -4,7 +4,7 @@ import { getAuthUserProfileById } from '../services/user';
 
 export function useAuth() {
     const userLoading = ref(true);
-    const user = ref({
+    let user = ref({
         id: null,
         email: null,
         displayName: null,

@@ -16,6 +16,7 @@ const isLoading = ref(true);
 const plans = ref([]);
 
 onMounted(async () => {
+
   isLoading.value = true;
 
   await loadUserData(user);

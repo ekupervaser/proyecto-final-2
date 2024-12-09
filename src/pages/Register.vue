@@ -32,7 +32,7 @@ export default {
 </script>
 
 <template>
-    <div class="max-w-screen-sm flex flex-col justify-center m-auto" style="height: calc(100vh - 136px)">
+    <div class="max-w-72 flex flex-col justify-center m-auto" style="height: calc(100vh - 136px); margin-top: 64px">
         <h1 class="text-3xl font-black mb-4">Crear cuenta</h1>
         <form action="#"
         @submit.prevent="handleSubmit"

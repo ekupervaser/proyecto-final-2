@@ -54,6 +54,7 @@ function usePhotoEdit() {
 
         try {
             await editProfilePhoto(photoData.value.file);
+            handlePhotoFormeHide();
         } catch (error) {
         }
         editingPhotoLoading.value = false;
@@ -125,46 +126,41 @@ function useProfileEdit(user) {
 </script>
 
 <template>
-    <div class="min-h-full">
+    <div class="min-h-full" style="margin-top: 64px;">
         <h1 class="text-3xl font-black mb-6 text-center">Mi perfil</h1>
             <div class="flex flex-col items-center bg-gray-100 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
                 <div class="flex w-full justify-center items-start gap-4" v-if="!editing && !editingPhoto">
                     <div class="flex flex-col items-center p-6 mb-4 bg-white shadow rounded-lg">
-                        <img v-if="user.photoURL" :src="user.photoURL" alt="Foto del perfil" class="w-[100px] h-[100px] rounded-full object-cover">
-                        <img v-else src="/user.png" alt="Sin foto del perfil" class="w-[100px] h- [100px] rounded-full object-cover">            
-                        <button
-                            class="bg-black text-white p-2 rounded-full mt-4 text-sm hover:bg-[grey]"
-                            @click="handlePhotoFormShow"
-                        >
-                            {{ user.photoURL ? 'Actualizar' : 'Cargar' }}
-                        </button>
-                        <div class="mt-6">
-                            <p class="font-bold">Nombre</p>
-                            <p class="mb-2">{{ user.displayName || 'No especificado' }}</p>
-                            <p class="font-bold">Email</p>
-                            <p class="mb-2">{{ user.email }}</p>
-                          <!--   <p class="font-bold">Rol</p>
-                            <p>{{ user.role || 'Usuario estándar' }}</p> -->
-                            <BaseButton @click="handleEditShow" class="mt-4">Editar</BaseButton>
+                        <div v-if="!userLoading">
+                            <div class="text-center flex flex-col items-center">
+                            <img v-if="user.photoURL" :src="user.photoURL" alt="Foto del perfil" class="w-[100px] h-[100px] rounded-full object-cover">
+                            <img v-else src="/user.png" alt="Sin foto del perfil" class="w-[100px] h- [100px] rounded-full object-cover">            
+                            <button
+                                class="bg-black text-white p-2 rounded-full mt-4 text-sm hover:bg-[grey]"
+                                @click="handlePhotoFormShow"
+                            >
+                                {{ user.photoURL ? 'Actualizar' : 'Cargar' }}
+                            </button>
+                        </div>
+                            <div class="mt-6">
+                                <p class="font-bold">Nombre</p>
+                                <p class="mb-2">{{ user.displayName || 'No especificado' }}</p>
+                                <p class="font-bold">Email</p>
+                                <p class="mb-2">{{ user.email }}</p>
+                            <!--   <p class="font-bold">Rol</p>
+                                <p>{{ user.role || 'Usuario estándar' }}</p> -->
+                                <BaseButton @click="handleEditShow" class="mt-4">Editar</BaseButton>
+                            </div>
+                        </div>
+                        <div v-else>
+                            <Loader></Loader>
                         </div>
                     </div>
                     <div class="w-full">
                     <div class="w-full flex flex-col p-6 mb-4 bg-white shadow rounded-lg">
-                        <h2 class="mb-3 text-xl font-bold">Mi plan</h2>
-                        <template v-if="!user.plansPurchased || user.plansPurchased.length === 0">
-                            <p>Actualmente no tenés ninguna suscripción activa.</p>
-                        </template>
-                        <template v-else>
-                            <ul class="list-disc pl-5">
-                                <li v-for="plan in user.plansPurchased" :key="plan.id">
-                                    {{ formatFirebaseDate(plan.purchaseDate) }} - {{ plan.name }}
-                                </li>
-                            </ul>
-                        </template>
-                    </div>
-                    <div class="w-full flex flex-col p-6 mb-4 bg-white shadow rounded-lg">
                         <h2 class="mb-3 text-xl font-bold">Mis pedidos</h2>
-                        <template v-if="!user.plansPurchased || user.plansPurchased.length === 0">
+                        <div v-if="!userLoading">
+                            <template v-if="!user.plansPurchased || user.plansPurchased.length === 0">
                             <p>Actualmente no tenés ninguna suscripción activa.</p>
                         </template>
                         <template v-else>
@@ -174,7 +170,29 @@ function useProfileEdit(user) {
                                 </li>
                             </ul>
                         </template>
+                        </div>  
+                        <div v-else>
+                            <Loader></Loader>
+                        </div>
                     </div>
+                   <!--  <div class="w-full flex flex-col p-6 mb-4 bg-white shadow rounded-lg">
+                        <h2 class="mb-3 text-xl font-bold">Mis pedidos</h2>
+                        <div v-if="!userLoading">
+                            <template v-if="!user.plansPurchased || user.plansPurchased.length === 0">
+                            <p>Actualmente no tenés ninguna suscripción activa.</p>
+                        </template>
+                        <template v-else>
+                            <ul class="list-disc pl-5">
+                                <li v-for="plan in user.plansPurchased" :key="plan.id">
+                                    {{ formatFirebaseDate(plan.purchaseDate) }} - {{ plan.name }}
+                                </li>
+                            </ul>
+                        </template>
+                        </div>
+                        <div v-else>
+                            <Loader></Loader>
+                        </div>
+                    </div> -->
                 </div>
                 </div>
                 <template v-else-if="editing">
@@ -191,7 +209,7 @@ function useProfileEdit(user) {
                         </div>
                         <div class="flex justify-end space-x-4">
                             <BaseButton :loading="editingLoading">Actualizar</BaseButton>
-                            <BaseButton @click="handleEditHide">Cancelar</BaseButton>
+                            <BaseButton class="boton-cancelar" @click="handleEditHide">Cancelar</BaseButton>
                         </div>
                     </form>
                 </template>
@@ -223,5 +241,11 @@ function useProfileEdit(user) {
                     </form>
                 </template>
             </div>
-    </div>
+        </div>
 </template>
+
+<style>
+    .min-h-full {
+        min-height: calc(100vh - 136px);
+    }
+</style>

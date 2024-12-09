@@ -43,3 +43,15 @@
     transform: rotate(360deg);
   }
 }
+
+.boton-cancelar {
+  background-color: #DC2626;
+}
+
+.boton-cancelar:hover {
+  background-color: red !important;
+}
+
+.boton-cancelar:active {
+  background-color: #cc1515 !important;
+}

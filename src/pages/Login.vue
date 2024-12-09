@@ -49,7 +49,7 @@ const doLogin = async () => {
 
 </script>
 <template>
-    <div class="max-w-screen-sm flex flex-col justify-center m-auto" style="height: calc(100vh - 136px)">
+    <div class="max-w-72 flex flex-col justify-center m-auto" style="height: calc(100vh - 136px); margin-top: 64px">
         <h1 class="text-3xl font-black mb-4">Iniciar sesión</h1>
         <form action="#"
         @submit.prevent="doLogin"
@@ -74,7 +74,7 @@ const doLogin = async () => {
                 />
                 <button
                     type="button"
-                    class="absolute mt-3 inset-y-0 right-0 flex items-center pr-3 text-gray-600"
+                    class="absolute mt-4 inset-y-0 right-0 flex items-center pr-3 text-gray-600"
                     @click="togglePasswordVisibility"                >
                     <FontAwesomeIcon v-if="isPasswordVisible" :icon="['fas', 'fa-eye-slash']" />
                     <FontAwesomeIcon v-else :icon="['fas', 'fa-eye']" />

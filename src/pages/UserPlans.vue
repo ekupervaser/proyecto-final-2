@@ -24,7 +24,8 @@ export default {
   methods: {
     async loadUserProfile() {
       try {
-        const planId = this.$route.params.id;
+        const auth = useAuth();
+        const userId = this.$route.params.id;
         const userProfile = await getAuthUserProfileById(userId);
         this.user = { ...userProfile };
       } catch (error) {
@@ -49,7 +50,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="min-h-full" style="margin-top: 64px;">
     <h1 class="font-bold text-center text-3xl">Planes comprados por {{ user.email }}</h1>
     <template v-if="userLoading">
       <Loader></Loader>
@@ -66,3 +67,9 @@ export default {
     </template>
   </div>
 </template>
+
+<style>
+    .min-h-full {
+        min-height: calc(100vh - 136px);
+    }
+</style>

@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-    <header>
+    <header class="fixed top-0 z-20 w-screen">
         <div class="bg-[#3B413C] text-white">
             <div class="container m-auto flex justify-between gap-4 items-center p-4">
                 <div>

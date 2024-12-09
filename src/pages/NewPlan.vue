@@ -87,7 +87,7 @@ export default {
 </script>
 
 <template>
-    <div class="min-h-full max-w-screen-sm flex flex-col justify-center m-auto">
+    <div class="min-h-full max-w-screen-sm flex flex-col justify-center m-auto" style="margin-top: 64px;">
     <h1 class="text-3xl font-black mb-4 text-center">Cargar nuevo plan</h1>
     <form action="#"
     @submit.prevent="savePlan"
