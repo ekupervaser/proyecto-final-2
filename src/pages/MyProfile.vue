@@ -236,7 +236,7 @@ function useProfileEdit(user) {
                         </div>
                         <div class="flex justify-end space-x-4">
                             <BaseButton :loading="editingPhotoLoading">Actualizar foto</BaseButton>
-                            <BaseButton @click="handlePhotoFormeHide">Cancelar</BaseButton>
+                            <BaseButton class="boton-cancelar"@click="handlePhotoFormeHide">Cancelar</BaseButton>
                         </div>
                     </form>
                 </template>

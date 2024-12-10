@@ -71,7 +71,7 @@ export default {
 </script>
 
 <template>
-    <div class="py-10">
+    <div class="py-10" style="margin-top: 64px;">
       <Loader style="height: calc(100vh - 136px);" v-if="userLoading"></Loader>
         <template v-else>
             <h1 class="text-3xl font-black mb-4 text-center">Conversación con {{ authUser.role ? user.email : "Soporte de Shine" }}</h1>

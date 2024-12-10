@@ -2,6 +2,7 @@
 import { importPlans } from '../services/shine-services.js';
 import { deletePlan } from '../services/panel.js';
 import Loader from './Loader.vue';
+import BaseButton from './BaseButton.vue';
 
 export default {
     name: "PlanPanel",
@@ -46,7 +47,7 @@ export default {
 <template>
   <div class="flex flex-col" v-if="!isLoading">
     <div class="container mx-auto">
-      <div class="overflow-x-auto">
+      <div class="overflow-x-auto rounded-lg">
         <table class="min-w-full">
           <thead>
             <tr>
@@ -65,13 +66,13 @@ export default {
                 <!-- Botón para editar (redirige a EditPlan.vue) -->
                 <button 
                   @click="redirectToEditPlan(plan.id)" 
-                  class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                  class="boton-editar text-white px-4 py-2 rounded-lg">
                   Editar
                 </button>
                 <!-- Botón para eliminar -->
                 <button 
                   @click="showConfirmation(plan.id)" 
-                  class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+                  class="boton-cancelar text-white px-4 py-2 rounded-lg">
                   Eliminar
                 </button>
               </td>

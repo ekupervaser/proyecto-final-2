@@ -109,7 +109,7 @@ export default {
   </section>
 
   <section class="container py-8">
-    <h2 class="text-3xl font-bold mb-4 text-center">¡Probá nuestros!</h2>
+    <h2 class="text-3xl font-bold mb-4 text-center">¡Probá nuestros planes!</h2>
     <GeneralPlanCards></GeneralPlanCards>
   </section>
 

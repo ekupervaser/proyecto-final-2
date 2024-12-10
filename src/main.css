@@ -55,3 +55,24 @@
 .boton-cancelar:active {
   background-color: #cc1515 !important;
 }
+
+.boton-cancelar:disabled {
+  background-color: grey !important;
+}
+
+.boton-editar {
+  background-color: #94D1BF;
+}
+
+.boton-editar:hover {
+  background-color: #A8D9CD;
+}
+
+.boton-editar:active {
+  background-color: #7BB8A6;
+}
+
+.boton-editar:disabled {
+  background-color: grey;
+}
+
