@@ -94,3 +94,33 @@ export async function getPlansPurchasedByUser(userId) {
     throw error;
   }
 }
+
+/**
+ * Función para eliminar un plan de los planes comprados por el usuario
+ * 
+ * @param {string} userId
+ * @param {string} planId 
+ * @returns {Promise<void>}
+ */
+export async function deletePlanFromUser(userId, planId) {
+  try {
+    const userRef = doc(db, 'users', userId);
+
+    const userDoc = await getDoc(userRef);
+    if (!userDoc.exists()) {
+      throw new Error(`Usuario con ID ${userId} no encontrado.`);
+    }
+
+    const userData = userDoc.data();
+    const plansPurchased = userData.plansPurchased || [];
+
+    const updatedPlans = plansPurchased.filter(plan => plan.planId !== planId);
+
+    await updateDoc(userRef, { plansPurchased: updatedPlans });
+
+    console.log(`Plan con ID ${planId} eliminado exitosamente del usuario ${userId}.`);
+  } catch (error) {
+    console.error(`Error al eliminar el plan con ID ${planId}:`, error);
+    throw error;
+  }
+}
