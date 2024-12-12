@@ -48,7 +48,7 @@ export default {
   <div class="flex flex-col" v-if="!isLoading">
     <div class="container mx-auto">
       <div class="overflow-x-auto rounded-lg">
-        <table class="min-w-full">
+        <table class="min-w-full table-fixed">
           <thead>
             <tr>
               <th class="px-6 py-3 bg-gray-300 text-left">Nombre</th>
@@ -59,20 +59,20 @@ export default {
           </thead>
           <tbody>
             <tr v-for="plan in plans" :key="plan.id">
-              <td class="border px-6 py-4">{{ plan.name }}</td>
-              <td class="border px-6 py-4">{{ plan.description }}</td>
-              <td class="border px-6 py-4">${{ plan.price }}</td>
-              <td class="border px-6 py-4 flex space-x-2">
+              <td class="border px-6 py-4 align-middle h-full">{{ plan.name }}</td>
+              <td class="border px-6 py-4 align-middle h-full">{{ plan.description }}</td>
+              <td class="border px-6 py-4 align-middle h-full">${{ plan.price }}</td>
+              <td class="border px-6 py-4">
                 <!-- Botón para editar (redirige a EditPlan.vue) -->
                 <button 
                   @click="redirectToEditPlan(plan.id)" 
-                  class="boton-editar text-white px-4 py-2 rounded-lg">
+                  class="boton-editar w-full text-white px-4 py-2 rounded-lg">
                   Editar
                 </button>
                 <!-- Botón para eliminar -->
                 <button 
                   @click="showConfirmation(plan.id)" 
-                  class="boton-cancelar text-white px-4 py-2 rounded-lg">
+                  class="boton-cancelar w-full text-white mt-2 px-4 py-2 rounded-lg">
                   Eliminar
                 </button>
               </td>

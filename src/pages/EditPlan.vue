@@ -1,17 +1,20 @@
 <script>
 import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { getPlanById, editPlan } from '../services/panel.js';
 import BaseButton from '../components/BaseButton.vue';
 import BaseInput from '../components/BaseInput.vue';
 import BaseLabel from '../components/BaseLabel.vue';
 import BaseTextarea from '../components/BaseTextarea.vue';
+import Loader from '../components/Loader.vue';
 
 export default {
   name: 'EditPlan',
-  components: { BaseButton, BaseInput, BaseLabel, BaseTextarea },
+  components: { BaseButton, BaseInput, BaseLabel, BaseTextarea, Loader },
   setup() {
     const route = useRoute();
+    const router = useRouter();
+    const isLoading = ref(false); // Estado de carga
     const plan = ref({
       id: '',
       name: '',
@@ -38,6 +41,7 @@ export default {
     });
 
     const updatePlan = () => {
+      isLoading.value = true; // Activar Loader
       const updatedData = {
         price: plan.value.price,
         benefits: plan.value.benefits,
@@ -48,9 +52,13 @@ export default {
       editPlan(planId, updatedData)
         .then(response => {
           console.log('Plan actualizado con éxito', response);
+          router.push('/panel');
         })
         .catch(error => {
           console.error('Error al guardar el plan', error);
+        })
+        .finally(() => {
+          isLoading.value = false; // Desactivar Loader
         });
     };
 
@@ -64,6 +72,7 @@ export default {
 
     return {
       plan,
+      isLoading,
       updatePlan,
       addBenefit,
       removeBenefit,
@@ -102,7 +111,14 @@ export default {
           </button>
         </div>
       </div>
-      <BaseButton type="submit">Guardar Cambios</BaseButton>
+      <BaseButton type="submit">
+        <template v-if="isLoading">
+          <Loader />
+        </template>
+        <template v-else>
+          Guardar cambios
+        </template>
+      </BaseButton>
     </form>
   </div>
 </template>

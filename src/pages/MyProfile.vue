@@ -162,139 +162,110 @@ const {
 </script>
 
 <template>
-    <div class="min-h-full" style="margin-top: 64px;">
-      <h1 class="text-3xl font-black mb-6 text-center">Mi perfil</h1>
-      <div class="flex flex-col items-center bg-gray-100 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
-        <div class="flex w-full justify-center items-start gap-4" v-if="!editing && !editingPhoto">
-          <div class="flex flex-col items-center p-6 mb-4 bg-white shadow rounded-lg">
-            <div v-if="!userLoading">
-              <div class="text-center flex flex-col items-center">
-                <img v-if="user.photoURL" :src="user.photoURL" alt="Foto del perfil" class="w-[100px] h-[100px] rounded-full object-cover">
-                <img v-else src="/user.png" alt="Sin foto del perfil" class="w-[100px] h-[100px] rounded-full object-cover">
-                <button
-                  class="bg-black text-white p-2 rounded-full mt-4 text-sm hover:bg-[grey]"
-                  @click="handlePhotoFormShow"
-                >
-                  {{ user.photoURL ? 'Actualizar' : 'Cargar' }}
-                </button>
-              </div>
-              <div class="mt-6">
-                <p class="font-bold">Nombre</p>
-                <p class="mb-2">{{ user.displayName || 'No especificado' }}</p>
-                <p class="font-bold">Email</p>
-                <p class="mb-2">{{ user.email }}</p>
-                <BaseButton @click="handleEditShow" class="mt-4">Editar</BaseButton>
-              </div>
-            </div>
-            <div v-else>
-              <Loader></Loader>
-            </div>
+  <div class="min-h-full" style="margin-top: 64px;">
+    <h1 class="text-2xl sm:text-3xl font-black mb-6 text-center">Mi perfil</h1>
+    <div class="flex flex-col md:flex-row items-start bg-gray-100 p-4 sm:p-6 rounded-lg shadow-lg max-w-3xl mx-auto space-y-4 md:space-y-0 md:space-x-4">
+      <!-- Perfil -->
+      <div class="flex flex-col items-center p-4 sm:p-6 bg-white shadow rounded-lg w-full md:w-1/3 px-4 sm:px-6">
+        <div v-if="!userLoading">
+          <div class="text-center flex flex-col items-center">
+            <img
+              v-if="user.photoURL"
+              :src="user.photoURL"
+              alt="Foto del perfil"
+              class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover"
+            />
+            <img
+              v-else
+              src="/user.png"
+              alt="Sin foto del perfil"
+              class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover"
+            />
+            <button
+              class="bg-black text-white p-2 rounded-full mt-4 text-sm hover:bg-gray-700"
+              @click="handlePhotoFormShow"
+            >
+              {{ user.photoURL ? 'Actualizar' : 'Cargar' }}
+            </button>
           </div>
-          <div class="w-full">
-            <div class="w-full flex flex-col p-6 mb-4 bg-white shadow rounded-lg">
-              <h2 class="mb-3 text-xl font-bold">Mis pedidos</h2>
-              <div v-if="!userLoading">
-                <template v-if="!user.plansPurchased || user.plansPurchased.length === 0">
-                  <p>Actualmente no tenés ninguna suscripción activa.</p>
-                </template>
-                <template v-else>
-                  <ul class="list-disc pl-5">
-                    <li v-for="plan in user.plansPurchased" :key="plan.planId" class="flex items-center justify-between">
-                      <div>
-                        {{ formatFirebaseDate(plan.purchaseDate) }} - {{ plan.name }}
-                      </div>
-                      <button
-                        class="text-red-500 hover:underline"
-                        :disabled="deletingPlan"
-                        @click="handleDeletePlan(plan.planId)"
-                      >
-                        Eliminar
-                      </button>
-                    </li>
-                  </ul>
-                </template>
-              </div>
-              <div v-else>
-                <Loader></Loader>
-              </div>
-            </div>
-  
-            <!-- Modal de confirmación -->
-            <div v-if="showingConfirmation" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-              <div class="bg-white p-6 rounded-lg shadow-lg w-80 flex flex-col text-center">
-                <p class="text-gray-800 text-lg font-semibold mb-4">
-                  Estás a punto de eliminar el plan. ¿Deseas continuar?
-                </p>
-                <button
-                  class="mx-auto mt-3 py-2 w-full bg-red-600 rounded text-white hover:bg-red-700 transition-all"
-                  :disabled="deletingPlan"
-                  @click="eliminarPlan()"
-                >
-                  <span v-if="deletingPlan">
-                    <Loader class="w-5 h-5 text-center m-auto" />
-                  </span>
-                  <span v-else>
-                    Sí, eliminarlo
-                  </span>
-                </button>
-                <button
-                  class="mx-auto mt-3 py-2 w-full bg-gray-600 rounded text-white hover:bg-gray-700 transition-all"
-                  @click="showingConfirmation = false"
-                >
-                  Cancelar
-                </button>
-              </div>
-            </div>
+          <div class="mt-6">
+            <p class="font-bold text-center md:text-left">Nombre</p>
+            <p class="mb-2 text-center md:text-left">{{ user.displayName || 'No especificado' }}</p>
+            <p class="font-bold text-center md:text-left">Email</p>
+            <p class="mb-2 text-center md:text-left">{{ user.email }}</p>
+            <BaseButton @click="handleEditShow" class="mt-4">Editar</BaseButton>
           </div>
         </div>
-        <template v-else-if="editing">
-          <form action="#" method="post" @submit.prevent="handleEditForm" class="w-full max-w-md mx-auto">
-            <div class="mb-4">
-              <BaseLabel for="displayName">Nombre</BaseLabel>
-              <BaseInput
-                id="displayName"
-                :disabled="editingLoading"
-                v-model="editData.displayName"
-                class="mt-1 block w-full"
-              >
-              </BaseInput>
-            </div>
-            <div class="flex justify-end space-x-4">
-              <BaseButton :loading="editingLoading">Actualizar</BaseButton>
-              <BaseButton class="boton-cancelar" @click="handleEditHide">Cancelar</BaseButton>
-            </div>
-          </form>
-        </template>
-        <template v-else>
-          <form action="#" method="post" @submit.prevent="handlePhotoFormSubmit" class="w-full max-w-md mx-auto">
-            <div class="mb-4">
-              <BaseLabel for="newPhoto">Foto de Perfil</BaseLabel>
-              <input
-                type="file"
-                id="newPhoto"
-                :disabled="editingPhotoLoading"
-                @change="handlePhotoChange"
-                class="mt-1 block w-full text-sm text-gray-500
-                file:mr-4 file:py-2 file:px-4
-                file:rounded-full file:border-0
-                file:text-sm file:font-semibold
-                file:bg-blue-50 file:text-blue-700
-                hover:file:bg-blue-100"
-              />
-            </div>
-            <div v-if="photoData.preview !== null" class="text-center mb-4">
-              <p>Previsualización de la foto seleccionada</p>
-              <img :src="photoData.preview" alt="Foto de perfil" class="mt-3 mx-auto w-[200px] h-[200px] rounded-full object-cover">
-            </div>
-            <div class="flex justify-end space-x-4">
-              <BaseButton :loading="editingPhotoLoading">Actualizar foto</BaseButton>
-              <BaseButton class="boton-cancelar" @click="handlePhotoFormeHide">Cancelar</BaseButton>
-            </div>
-          </form>
-        </template>
+        <div v-else>
+          <Loader></Loader>
+        </div>
+      </div>
+
+      <!-- Pedidos -->
+      <div class="w-full md:w-2/3 self-start">
+        <div class="w-full flex flex-col p-4 sm:p-6 bg-white shadow rounded-lg">
+          <h2 class="mb-3 text-lg sm:text-xl font-bold">Mis pedidos</h2>
+          <div v-if="!userLoading">
+            <template v-if="!user.plansPurchased || user.plansPurchased.length === 0">
+              <p>Actualmente no tenés ninguna suscripción activa.</p>
+            </template>
+            <template v-else>
+              <ul class="list-disc pl-5 space-y-2">
+                <li
+                  v-for="plan in user.plansPurchased"
+                  :key="plan.planId"
+                  class="flex flex-col sm:flex-row items-start sm:items-center justify-between"
+                >
+                  <div>
+                    {{ formatFirebaseDate(plan.purchaseDate) }} - {{ plan.name }}
+                  </div>
+                  <button
+                    class="text-red-500 hover:underline mt-2 sm:mt-0"
+                    :disabled="deletingPlan"
+                    @click="handleDeletePlan(plan.planId)"
+                  >
+                    Eliminar
+                  </button>
+                </li>
+              </ul>
+            </template>
+          </div>
+          <div v-else>
+            <Loader></Loader>
+          </div>
+        </div>
       </div>
     </div>
-  </template>
+
+    <!-- Modal de confirmación -->
+    <div
+      v-if="showingConfirmation"
+      class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50"
+    >
+      <div class="bg-white p-6 rounded-lg shadow-lg w-80 flex flex-col text-center">
+        <p class="text-gray-800 text-lg font-semibold mb-4">
+          Estás a punto de eliminar el plan. ¿Deseas continuar?
+        </p>
+        <button
+          class="mx-auto mt-3 py-2 w-full bg-red-600 rounded text-white hover:bg-red-700 transition-all"
+          :disabled="deletingPlan"
+          @click="eliminarPlan()"
+        >
+          <span v-if="deletingPlan">
+            <Loader class="w-5 h-5 text-center m-auto" />
+          </span>
+          <span v-else>Sí, eliminarlo</span>
+        </button>
+        <button
+          class="mx-auto mt-3 py-2 w-full bg-gray-600 rounded text-white hover:bg-gray-700 transition-all"
+          @click="showingConfirmation = false"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style>
   .min-h-full {
