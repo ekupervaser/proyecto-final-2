@@ -51,7 +51,7 @@ export default {
             <div class="container m-auto flex justify-between items-center py-2">
                 <!-- Logo -->
                 <div>
-                    <img src="../dist/logo-web.png" alt="Favicon" id="logo-nav">
+                    <img src="/logo-web.png" alt="Favicon" id="logo-nav">
                 </div>
 
                 <!-- Botón menú hamburguesa (visible en pantallas chicas) -->
