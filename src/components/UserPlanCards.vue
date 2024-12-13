@@ -14,6 +14,7 @@ const { user } = useAuth();
 
 const isLoading = ref(true);
 const plans = ref([]);
+const showModal = ref(false);  // Nueva variable reactiva para controlar el modal
 
 onMounted(async () => {
 
@@ -69,7 +70,14 @@ async function purchasePlan(userId, planId) {
       ...p,
       isPurchasing: false,
     }));
+
+    // Mostrar el modal después de la compra
+    showModal.value = true;
   }
+}
+
+function closeModal() {
+  showModal.value = false;
 }
 </script>
 
@@ -106,6 +114,17 @@ async function purchasePlan(userId, planId) {
     </div>
     <div class="col-span-full flex justify-center items-center" v-else>
       <Loader style="height: calc(100vh - 136px);"></Loader>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div v-if="showModal" class="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
+    <div class="bg-white p-6 rounded-md shadow-lg max-w-lg w-full">
+      <h2 class="text-xl font-bold mb-4">¡Compra exitosa!</h2>
+      <p class="text-gray-600 mb-4">Gracias por tu compra. Para coordinar el pago y el retiro de la ropa, por favor contactate a través del chat de soporte.</p>
+      <div class="flex justify-end">
+        <button @click="closeModal" class="bg-[#94D1BF] text-white px-4 py-2 rounded">Cerrar</button>
+      </div>
     </div>
   </div>
 </template>
