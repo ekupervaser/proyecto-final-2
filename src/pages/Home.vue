@@ -3,6 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTruck, faTshirt, faLeaf, faTags, faPhoneAlt, faCheck } from '@fortawesome/free-solid-svg-icons'
 import GeneralPlanCards from '../components/GeneralPlanCards.vue'
+import PlanCards from '../components/UserPlanCards.vue'
+import { getAuthUserProfileById } from '../services/user'
+import { getPlansPurchasedByUser } from '../services/shine-services'
+import Loader from '../components/Loader.vue'
+import { isAuthenticated } from '../services/auth'
 
 library.add(faTruck, faTshirt, faLeaf, faTags, faPhoneAlt, faCheck);
 
@@ -11,7 +16,50 @@ export default {
   components: {
     FontAwesomeIcon, 
     GeneralPlanCards,
-  }
+    PlanCards,
+    Loader,
+  },
+  data() {
+    return {
+      userLoading: true,
+      user: {
+        id: null,
+        email: null,
+        displayName: null,
+        role: null,
+        photoURL: null,
+        plansPurchased: [],
+      },
+      planData: [],
+      isAuthenticated: false,
+    };
+  },
+  methods: {
+    async loadUserProfile() {
+      try {
+        const userId = this.$route.params.id;
+        const userProfile = await getAuthUserProfileById(userId);
+        this.user = { ...userProfile };
+      } catch (error) {
+        console.error('no llega el perfil', error)
+      }
+    },
+    async loadPlanData() {
+      try {
+          this.planData = await getPlansPurchasedByUser(this.user.id);
+      } catch (error) {
+
+      } 
+        this.userLoading = false;
+    },
+  },
+  async mounted() {
+    this.isAuthenticated = isAuthenticated()
+    this.userLoading = true;
+    await this.loadUserProfile();
+    await this.loadPlanData();
+    this.userLoading = false;
+  },
 }
 </script>
 
@@ -110,7 +158,12 @@ export default {
 
   <section class="container py-8">
     <h2 class="text-3xl font-bold mb-4 text-center">¡Probá nuestros planes!</h2>
-    <GeneralPlanCards></GeneralPlanCards>
+    <div v-if="isAuthenticated">
+      <PlanCards></PlanCards>
+    </div>
+    <div v-else>
+      <GeneralPlanCards></GeneralPlanCards>
+    </div>
   </section>
 
   <section class="bg-[#FFCCBC] py-12">
